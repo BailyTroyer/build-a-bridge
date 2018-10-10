@@ -49,6 +49,7 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - leveldb-library (1.20)
+  - MessageKit (1.0.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -57,7 +58,6 @@ PODS:
   - Protobuf (3.6.0)
   - RAMAnimatedTabBarController (3.5.0)
   - ReactiveKit (3.9.6)
-  - SwipeCellKit (2.4.2)
   - ViewAnimator (2.1.1)
 
 DEPENDENCIES:
@@ -67,9 +67,9 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - JSQMessagesViewController
+  - MessageKit
   - RAMAnimatedTabBarController
   - ReactiveKit
-  - SwipeCellKit
   - ViewAnimator
 
 SPEC REPOS:
@@ -87,11 +87,11 @@ SPEC REPOS:
     - JSQMessagesViewController
     - JSQSystemSoundPlayer
     - leveldb-library
+    - MessageKit
     - nanopb
     - Protobuf
     - RAMAnimatedTabBarController
     - ReactiveKit
-    - SwipeCellKit
     - ViewAnimator
 
 SPEC CHECKSUMS:
@@ -108,13 +108,13 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   RAMAnimatedTabBarController: 7e259e89b669c7bc833a6441c7d8fbfd6580f473
   ReactiveKit: 804d3093ad42dee0de19e42d4f7dcae9c14364b0
-  SwipeCellKit: a01c587d6786f514a44eed54261e24eaa9fb4de6
   ViewAnimator: 43c31539508d995ea2c5e98338211f7c009b358f
 
-PODFILE CHECKSUM: ce7a47ae4ab82b99f337b50046cb34d00767402c
+PODFILE CHECKSUM: 94f0ffdaecbeea42842676c6bfd20ab6fb5bfbc5
 
 COCOAPODS: 1.5.3

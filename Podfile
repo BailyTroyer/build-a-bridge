@@ -13,9 +13,8 @@ target 'Build-A-Bridge' do
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'ViewAnimator'
-  pod 'SwipeCellKit'
-  pod 'SwipeCellKit'
   pod 'ViewAnimator'
   pod 'JSQMessagesViewController'
+  pod 'MessageKit'
   pod 'RAMAnimatedTabBarController'
 end
