@@ -131,18 +131,6 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         menu_showing = !menu_showing
     }
     
-    
-    @IBAction func logOut(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            self.performSegue(withIdentifier: "sign_out", sender: self)
-        } catch let signOutError as NSError {
-            warningLabel.textColor = UIColor.red
-            warningLabel.text = signOutError.localizedDescription
-            print ("Error signing out: %@", signOutError)
-        }
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print("count: \(names.count)")

@@ -15,20 +15,18 @@ import FirebaseDatabase
 class SettingsView: UIViewController {
     
     
+    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var fName: UILabel!
     @IBOutlet weak var lName: UILabel!
     @IBOutlet weak var emailAddress: UILabel!
     
-//    @IBOutlet weak var imageView: UIImageView!
-//    @IBOutlet weak var fName: UILabel!
-//    @IBOutlet weak var lName: UILabel!
-//    @IBOutlet weak var emailAddress: UILabel!
-    
     var ref = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.warningLabel.text = ""
         
         //background image
         let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
@@ -71,4 +69,17 @@ class SettingsView: UIViewController {
 
         navigationItem.title = "Edit Account"
     }
+    
+    @IBAction func log_out(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            self.performSegue(withIdentifier: "sign_out", sender: self)
+        } catch let signOutError as NSError {
+            self.warningLabel.textColor = UIColor.red
+            self.warningLabel.text = signOutError.localizedDescription
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
 }
