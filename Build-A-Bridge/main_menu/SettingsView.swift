@@ -36,7 +36,9 @@ class SettingsView: UIViewController {
         
         picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
             if let error = error {
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
+                print("aint no photo")
+                self.imageView.image = #imageLiteral(resourceName: "default_profile")
             } else {
                 // Data for "images/island.jpg" is returned
                 let profImage = UIImage(data: data!)

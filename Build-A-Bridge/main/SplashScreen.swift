@@ -53,11 +53,11 @@ class SplashScreen: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
+//        
+//    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -91,6 +91,9 @@ class SplashScreen: UIViewController {
         self.performSegue(withIdentifier: "to_splash", sender: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.emailField.becomeFirstResponder()
+    }
     
 }
 

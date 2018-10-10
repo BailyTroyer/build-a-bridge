@@ -139,11 +139,16 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //self.navigationController?.isNavigationBarHidden = true
         if let index = self.requestsView.indexPathForSelectedRow{
             self.requestsView.deselectRow(at: index, animated: true)
             print("trying to deselect")
         }
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.navigationController?.isNavigationBarHidden = false
+//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
