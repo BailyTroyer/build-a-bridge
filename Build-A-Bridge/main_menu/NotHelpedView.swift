@@ -120,7 +120,7 @@ class NotHelpedView: UIViewController {
         })
         
         
-        self.performSegue(withIdentifier: "back_to_main", sender: self)
+//        self.performSegue(withIdentifier: "back_to_main", sender: self)
     }
     
     

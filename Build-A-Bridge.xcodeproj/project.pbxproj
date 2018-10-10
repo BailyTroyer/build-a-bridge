@@ -36,6 +36,7 @@
 		EBA27F13216E4537009BC24D /* ChangeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F12216E4537009BC24D /* ChangeSettingView.swift */; };
 		EBA27F15216E6A92009BC24D /* InitialSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F14216E6A92009BC24D /* InitialSplashView.swift */; };
 		EBA27F17216E798E009BC24D /* RequestSubmittedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F16216E798E009BC24D /* RequestSubmittedView.swift */; };
+		EBA27F19216EB7FE009BC24D /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F18216EB7FE009BC24D /* ContactCell.swift */; };
 		EBBE914C211F5EB0005FCA48 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE914B211F5EAF005FCA48 /* SignUp.storyboard */; };
 		EBBE914E211F62DF005FCA48 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE914D211F62DF005FCA48 /* MainMenu.storyboard */; };
 		EBBE9150211F789E005FCA48 /* SelectSkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */; };
@@ -88,6 +89,7 @@
 		EBA27F12216E4537009BC24D /* ChangeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingView.swift; sourceTree = "<group>"; };
 		EBA27F14216E6A92009BC24D /* InitialSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSplashView.swift; sourceTree = "<group>"; };
 		EBA27F16216E798E009BC24D /* RequestSubmittedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSubmittedView.swift; sourceTree = "<group>"; };
+		EBA27F18216EB7FE009BC24D /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		EBBE914B211F5EAF005FCA48 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		EBBE914D211F62DF005FCA48 /* MainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSkillsView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				EBF11925213C5D0C006E84BD /* Constants.swift */,
 				EBF11923213C5A0C006E84BD /* MessageView.swift */,
 				EBF1192A21402789006E84BD /* ListContactView.swift */,
+				EBA27F18216EB7FE009BC24D /* ContactCell.swift */,
 			);
 			path = messages;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				EBA27F13216E4537009BC24D /* ChangeSettingView.swift in Sources */,
 				EB28164A210EAE1F00DF82EC /* SkillSelectView.swift in Sources */,
 				EB2C8EA0211BACE0005D9ABD /* RequestsView.swift in Sources */,
+				EBA27F19216EB7FE009BC24D /* ContactCell.swift in Sources */,
 				EBE247C9212BAB1600560012 /* SkillCell.swift in Sources */,
 				EBF11924213C5A0C006E84BD /* MessageView.swift in Sources */,
 				EB2C8E9C211A9179005D9ABD /* ViewFeedRequestCell.swift in Sources */,

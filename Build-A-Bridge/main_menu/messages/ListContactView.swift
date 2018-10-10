@@ -7,89 +7,109 @@
 //
 import Foundation
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class ListContactView: UITableViewController {
+    
+    var ref = Database.database().reference()
 
+    var uids = [Any]()
+    var selectedContact: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        print("uid: \(Auth.auth().currentUser?.uid as! String)")
+        self.ref.child("MESSAGES_BY_USER").child(Auth.auth().currentUser?.uid as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            print("messages value: \(String(describing: value))")
+            
+            if snapshot.value as? NSDictionary != nil {
+                
+                for user in value! {
+                    print("user: \(user)")
+                    self.uids.append(user.key as! String)
+                    
+                    
+                    
+                    self.tableView.reloadData()
+//                    let contents = user.value as? NSDictionary
+//
+//                    let uid = contents?.value(forKey: "requesterId") as? String
+//
+//                    if uid != Auth.auth().currentUser?.uid {
+//                        let t = contents?.value(forKey: "title")
+//                        //print(t)
+//                        self.titles.append(t)
+//
+//                        let requestUID = contents?.value(forKey: "requestId")
+//                        self.requestUIDS.append(requestUID)
+//
+//                        //print(uid)
+//                        self.uids.append(uid)
+//
+//                        self.ref.child("USER_ID_DIRECTORY").child(uid as! String).observeSingleEvent(of: .value, with: { (sshot) in
+//                            let v = sshot.value as? NSDictionary
+//                            //print(v)
+//
+//                            let fName = v?.value(forKey: "firstName") as! String
+//                            let lName = v?.value(forKey: "lastName") as! String
+//                            let name = "\(fName) \(lName)"
+//
+//                            self.names.append(name)
+//
+//                            self.ticketView.reloadData()
+//                        })
+//                    }
+                    
+                }
+                self.tableView.reloadData()
+//                self.ticketView.reloadData()
+            }
+            
+        })
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        print("count: \(self.uids.count)")
+        return self.uids.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        print("creating cell")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
 
-        return cell
+        cell.contactName.text = "name"
+        cell.contactImage.image = #imageLiteral(resourceName: "default_profile")
+        cell.lastMessageTime.text = ""
+        cell.lastMessageContent.text = ""
+
+        cell.clipsToBounds = true
+
+        return (cell)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        //print("selected: \(self.requestUIDS[indexPath.row])")
+        
+        //self.selectedSkill = self.requestUIDS[indexPath.row] as! String
+        //print("selected skill var: \(self.selectedSkill)")
+        
+        //self.performSegue(withIdentifier: "detail_ticket", sender: self)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 115.0;//Choose your custom row height
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

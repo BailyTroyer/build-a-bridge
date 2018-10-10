@@ -16,7 +16,11 @@ class RequestSubmittedView: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! UIViewController
+        let destinationVC = segue.destination
         destinationVC.hidesBottomBarWhenPushed = false
+    }
+    
+    @IBAction func done(_ sender: Any) {
+        self.performSegue(withIdentifier: "done_request_create", sender: self)
     }
 }
