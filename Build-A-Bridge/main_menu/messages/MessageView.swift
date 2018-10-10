@@ -191,7 +191,7 @@ class MessageVIew: JSQMessagesViewController {
         
         let message = ["content": text, "recieverFcmToken": "", "recieverUid": "", "senderName": senderDisplayName, "senderUid": senderId, "timestamp": ""]
         
-        print()
+        print("MESSAGE: \(message)")
         
         /* TODO:
          * - Assure lastUpdated is updated

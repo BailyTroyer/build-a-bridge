@@ -12,9 +12,10 @@ import Firebase
 
 class SplashScreen: UIViewController {
     
-    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var warningLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,6 @@ class SplashScreen: UIViewController {
         setupKeyboardDismissRecognizer()
         
         warningLabel.text = ""
-        
     }
     
     func setupKeyboardDismissRecognizer() {
@@ -64,11 +64,7 @@ class SplashScreen: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func signUp(_ sender: Any) {
-        self.performSegue(withIdentifier: "one", sender: self)
-    }
-    
-    @IBAction func signIn(_ sender: Any) {
+    @IBAction func logIn(_ sender: Any) {
         if emailField.text != "" && passwordField.text != "" {
             
             Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
@@ -89,6 +85,12 @@ class SplashScreen: UIViewController {
             warningLabel.text = "enter an email and password"
         }
     }
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        self.performSegue(withIdentifier: "to_splash", sender: self)
+    }
+    
     
 }
 

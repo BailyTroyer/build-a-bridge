@@ -41,7 +41,7 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.isToolbarHidden = true
+//        navigationController?.isToolbarHidden = true
         
         userName.text = Auth.auth().currentUser?.displayName
         print("display name: \(Auth.auth().currentUser?.displayName)")
@@ -49,24 +49,24 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         warningLabel.text = ""
         
         //background image
-        let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
-        
-        let picRref = profPicStorage.reference().child("PROFILE_PICTURES/\((Auth.auth().currentUser?.uid)! + ".jpeg")")
-        
-        
-        picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                // Data for "images/island.jpg" is returned
-                let profImage = UIImage(data: data!)
-                self.profilePicture.image = profImage
-            }
-        }
-        
-        leading_constraint.constant = -240
-        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
-        profilePicture.layer.masksToBounds = true
+//        let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
+//
+//        let picRref = profPicStorage.reference().child("PROFILE_PICTURES/\((Auth.auth().currentUser?.uid)! + ".jpeg")")
+//
+//
+//        picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                // Data for "images/island.jpg" is returned
+//                let profImage = UIImage(data: data!)
+//                self.profilePicture.image = profImage
+//            }
+//        }
+//
+//        leading_constraint.constant = -240
+//        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
+//        profilePicture.layer.masksToBounds = true
         
         self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -114,22 +114,22 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    @IBAction func menu_selected(_ sender: Any) {
-        print("menu selected")
-        if menu_showing {
-            leading_constraint.constant = -240
-            UIView.animate(withDuration: 0.1, animations: {
-                self.view.layoutIfNeeded()
-            })
-        } else {
-            leading_constraint.constant = 0
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        
-        menu_showing = !menu_showing
-    }
+//    @IBAction func menu_selected(_ sender: Any) {
+//        print("menu selected")
+//        if menu_showing {
+//            leading_constraint.constant = -240
+//            UIView.animate(withDuration: 0.1, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        } else {
+//            leading_constraint.constant = 0
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        }
+//
+//        menu_showing = !menu_showing
+//    }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
