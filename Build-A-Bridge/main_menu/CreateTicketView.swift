@@ -139,8 +139,9 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
         view.endEditing(true)
     }
     
-    
     @IBAction func submitRequest(_ sender: Any) {
+        print("submitting")
+        
         //var ref: DatabaseReference!
         
         //ref = Database.database().reference()
@@ -175,10 +176,11 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
             
             //[[String:Any]]()
             
-            self.performSegue(withIdentifier: "back_to_feed", sender: self)
+            self.performSegue(withIdentifier: "request_submitted", sender: self)
         }
         
     }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count: \(self.skills.count)")

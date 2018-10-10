@@ -44,6 +44,9 @@ class AddSkillView: UITableViewController {
             //value -> kv pairs of k=uid v=true
             
             let value = snapshot.value as? NSDictionary
+            
+            print("skills: \(value)")
+            
             for skill in value! {
                 let skill_id = skill.key as? String
                 self.ref.child("SKILLS").child(skill_id!).observeSingleEvent(of: .value, with: { (ssnapshot) in

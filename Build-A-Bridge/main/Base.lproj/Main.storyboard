@@ -174,10 +174,10 @@
             </objects>
             <point key="canvasLocation" x="-1722" y="1344"/>
         </scene>
-        <!--View Controller-->
+        <!--Initial Splash View-->
         <scene sceneID="yqh-4G-uHn">
             <objects>
-                <viewController id="riY-sP-jqC" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="riY-sP-jqC" customClass="InitialSplashView" customModule="Build_A_Bridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iRh-mG-B4G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

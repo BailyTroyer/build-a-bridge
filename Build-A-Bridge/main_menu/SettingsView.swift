@@ -23,6 +23,8 @@ class SettingsView: UIViewController {
     
     var ref = Database.database().reference()
     
+    var setting: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,5 +85,32 @@ class SettingsView: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    @IBAction func changeName(_ sender: Any) {
+        self.setting = "0"
+        self.performSegue(withIdentifier: "mutate_setting", sender: self)
+    }
+    @IBAction func changeNameLast(_ sender: Any) {
+        self.setting = "1"
+        self.performSegue(withIdentifier: "mutate_setting", sender: self)
+    }
+    @IBAction func changeEmail(_ sender: Any) {
+        self.setting = "2"
+        self.performSegue(withIdentifier: "mutate_setting", sender: self)
+    }
+    @IBAction func changePassword(_ sender: Any) {
+        self.setting = "3"
+        self.performSegue(withIdentifier: "mutate_setting", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is ChangeSettingView
+        {
+            let vc = segue.destination as? ChangeSettingView
+            vc?.setting = self.setting
+        }
+    }
+    
     
 }
