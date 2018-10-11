@@ -10,17 +10,28 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+struct contact {
+    var message_uid:String?
+    var name:String?
+    var image:UIImage
+    var time:String?
+    var user_uid:String?
+}
+
 class ListContactView: UITableViewController {
     
     var ref = Database.database().reference()
 
     var uids = [Any]()
+    var message_uids = [Any]()
     var selectedContact: String = ""
+    var contacts = [contact]()
+    
+    var selected_contact: contact? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("uid: \(Auth.auth().currentUser?.uid as! String)")
         self.ref.child("MESSAGES_BY_USER").child(Auth.auth().currentUser?.uid as! String).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
@@ -30,48 +41,61 @@ class ListContactView: UITableViewController {
                 
                 for user in value! {
                     print("user: \(user)")
+                    
+                    let user_uid = user.key as! String
+                    let message_uid = user.value as! String
+                    
+                    print("message_uid: \(message_uid)")
+                    
                     self.uids.append(user.key as! String)
+                    self.message_uids.append(user.value as! String)
                     
                     
-                    
-                    self.tableView.reloadData()
-//                    let contents = user.value as? NSDictionary
-//
-//                    let uid = contents?.value(forKey: "requesterId") as? String
-//
-//                    if uid != Auth.auth().currentUser?.uid {
-//                        let t = contents?.value(forKey: "title")
-//                        //print(t)
-//                        self.titles.append(t)
-//
-//                        let requestUID = contents?.value(forKey: "requestId")
-//                        self.requestUIDS.append(requestUID)
-//
-//                        //print(uid)
-//                        self.uids.append(uid)
-//
-//                        self.ref.child("USER_ID_DIRECTORY").child(uid as! String).observeSingleEvent(of: .value, with: { (sshot) in
-//                            let v = sshot.value as? NSDictionary
-//                            //print(v)
-//
-//                            let fName = v?.value(forKey: "firstName") as! String
-//                            let lName = v?.value(forKey: "lastName") as! String
-//                            let name = "\(fName) \(lName)"
-//
-//                            self.names.append(name)
-//
-//                            self.ticketView.reloadData()
-//                        })
-//                    }
+                    self.ref.child("MESSAGES").child(message_uid).observeSingleEvent(of: .value, with: { (ssnapshot) in
+                        
+                        print("message_detail value: \(ssnapshot)")
+                        
+                        if ssnapshot.value as? NSDictionary != nil {
+                            let data = ssnapshot.value as? NSDictionary
+                            
+                            print("DATA: \(String(describing: data))")
+                            
+                            let time = data!.value(forKey: "lastUpdated") as! NSDictionary
+                            
+                            print("time: \(String(describing: time))")
+                            
+                            let hour = time.value(forKey: "hour") as! integer_t
+                            let minute = time.value(forKey: "minute") as! integer_t
+                            
+                            let time_stamp = String(hour) + ":" + String(minute)
+                            
+                            
+                            self.ref.child("USER_ID_DIRECTORY").child(user_uid).observeSingleEvent(of: .value, with: { (s) in
+                                if s.value as? NSDictionary != nil {
+                                    print("USER: \(String(describing: s.value as? NSDictionary))")
+                                    
+                                    let fname = (s.value as? NSDictionary)?.value(forKey: "firstName") as! String
+                                    let lname = (s.value as? NSDictionary)?.value(forKey: "lastName") as! String
+                                    
+                                    let whole_name = "\(fname) \(lname)"
+                                    
+                                    let img = #imageLiteral(resourceName: "portrait_2")
+                                    
+                                    self.contacts.append(contact(message_uid: message_uid, name: whole_name, image: img, time: time_stamp, user_uid: user_uid))
+                                    
+                                    print("adding to contacts")
+                                    
+                                    self.tableView.reloadData()
+                                    
+                                }
+                            })
+                        }
+                    })
                     
                 }
-                self.tableView.reloadData()
-//                self.ticketView.reloadData()
             }
-            
         })
-        
-        
+        self.tableView.reloadData()
     }
 
     
@@ -86,24 +110,35 @@ class ListContactView: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
 
-        cell.contactName.text = "name"
-        cell.contactImage.image = #imageLiteral(resourceName: "default_profile")
-        cell.lastMessageTime.text = ""
+        print("size of contacts: \(self.contacts.count)")
+        print("idxpth: \(indexPath.row)")
+        
+        let cntct = self.contacts[indexPath.row]
+        
+        cell.contactName.text = cntct.name
+        
+        if cntct.image == nil {
+            cell.contactImage.image = #imageLiteral(resourceName: "default_profile")
+
+        } else {
+            cell.contactImage.image = cntct.image
+
+        }
+        
+        cell.lastMessageTime.text = cntct.time
         cell.lastMessageContent.text = ""
-
+        
         cell.clipsToBounds = true
-
+        
         return (cell)
     }
     
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
-        //print("selected: \(self.requestUIDS[indexPath.row])")
-        
-        //self.selectedSkill = self.requestUIDS[indexPath.row] as! String
-        //print("selected skill var: \(self.selectedSkill)")
-        
-        //self.performSegue(withIdentifier: "detail_ticket", sender: self)
+//        self.selectedContact = self.contacts[indexPath.row]
+//
+//        self.performSegue(withIdentifier: "detail_ticket", sender: self)
+        self.performSegue(withIdentifier: "to_message", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

@@ -113,11 +113,21 @@ class AdvanceTicketView: UIViewController {
 
             if sshot.value as? NSMutableDictionary == nil {
 
+                let calendar = Calendar.current
+                let time=calendar.dateComponents([.hour,.minute,.second,.month,.year,.day], from: Date())
 
-                self.ref.child("MESSAGES").childByAutoId().setValue([
+                self.ref.child("MESSAGES").child(m_uid).setValue([
                     "msgId": "\(m_uid)",
                     "uid1": "\(self.volunteerUID)",
-                    "uid2": "\(self.requesterUID)"
+                    "uid2": "\(self.requesterUID)",
+                    "lastUpdated": [
+                        "day": time.day,
+                        "hour": time.hour,
+                        "minute": time.minute,
+                        "month": time.month,
+                        "second": time.second,
+                        "year": time.year
+                    ]
                 ])
 
                 self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID).setValue([
