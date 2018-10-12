@@ -18,6 +18,7 @@ class SplashScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("hi")
         //Looks for single or multiple taps.
         setupKeyboardDismissRecognizer()
         
