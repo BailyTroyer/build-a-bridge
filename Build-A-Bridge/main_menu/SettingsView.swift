@@ -39,6 +39,7 @@ class SettingsView: UIViewController {
         picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
             if let error = error {
 //                print(error.localizedDescription)
+                print(error)
                 print("aint no photo")
                 self.imageView.image = #imageLiteral(resourceName: "default_profile")
             } else {
@@ -51,14 +52,14 @@ class SettingsView: UIViewController {
         // database
         
     
-        self.ref.child("USERS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("USER_ID_DIRECTORY").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let contents = snapshot.value as? NSDictionary
             
-            var f = (contents?.value(forKey: "firstName") as? String)!
-            var l = (contents?.value(forKey: "lastName") as? String)!
+            let f = (contents?.value(forKey: "firstName") as? String)!
+            let l = (contents?.value(forKey: "lastName") as? String)!
             
-            var e = (contents?.value(forKey: "email") as? String)!
+            let e = (contents?.value(forKey: "email") as? String)!
         
             print("name: \(f)")
             
@@ -100,7 +101,7 @@ class SettingsView: UIViewController {
     }
     @IBAction func changePassword(_ sender: Any) {
         self.setting = "3"
-        self.performSegue(withIdentifier: "mutate_setting", sender: self)
+        self.performSegue(withIdentifier: "verify_password", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

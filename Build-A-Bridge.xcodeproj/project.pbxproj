@@ -33,10 +33,12 @@
 		EB2C8EA0211BACE0005D9ABD /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2C8E9F211BACE0005D9ABD /* RequestsView.swift */; };
 		EB2C8EA3211CDBD0005D9ABD /* AdvanceTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2C8EA2211CDBD0005D9ABD /* AdvanceTicketView.swift */; };
 		EB2C8EA6211CEEAD005D9ABD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2C8EA5211CEEAD005D9ABD /* icon.png */; };
+		EB506C82216FE5DE001430A3 /* VerifyPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB506C81216FE5DE001430A3 /* VerifyPasswordView.swift */; };
 		EBA27F13216E4537009BC24D /* ChangeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F12216E4537009BC24D /* ChangeSettingView.swift */; };
 		EBA27F15216E6A92009BC24D /* InitialSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F14216E6A92009BC24D /* InitialSplashView.swift */; };
 		EBA27F17216E798E009BC24D /* RequestSubmittedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F16216E798E009BC24D /* RequestSubmittedView.swift */; };
 		EBA27F19216EB7FE009BC24D /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F18216EB7FE009BC24D /* ContactCell.swift */; };
+		EBA27F1C216ED1C4009BC24D /* LoadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA27F1B216ED1C4009BC24D /* LoadFile.swift */; };
 		EBBE914C211F5EB0005FCA48 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE914B211F5EAF005FCA48 /* SignUp.storyboard */; };
 		EBBE914E211F62DF005FCA48 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE914D211F62DF005FCA48 /* MainMenu.storyboard */; };
 		EBBE9150211F789E005FCA48 /* SelectSkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */; };
@@ -86,10 +88,12 @@
 		EB2C8EA1211CCFCD005D9ABD /* ticket.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ticket.jpg; sourceTree = "<group>"; };
 		EB2C8EA2211CDBD0005D9ABD /* AdvanceTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceTicketView.swift; sourceTree = "<group>"; };
 		EB2C8EA5211CEEAD005D9ABD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		EB506C81216FE5DE001430A3 /* VerifyPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPasswordView.swift; sourceTree = "<group>"; };
 		EBA27F12216E4537009BC24D /* ChangeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingView.swift; sourceTree = "<group>"; };
 		EBA27F14216E6A92009BC24D /* InitialSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSplashView.swift; sourceTree = "<group>"; };
 		EBA27F16216E798E009BC24D /* RequestSubmittedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSubmittedView.swift; sourceTree = "<group>"; };
 		EBA27F18216EB7FE009BC24D /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		EBA27F1B216ED1C4009BC24D /* LoadFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFile.swift; sourceTree = "<group>"; };
 		EBBE914B211F5EAF005FCA48 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		EBBE914D211F62DF005FCA48 /* MainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSkillsView.swift; sourceTree = "<group>"; };
@@ -202,6 +206,14 @@
 			path = other;
 			sourceTree = "<group>";
 		};
+		EBA27F1A216ED1A0009BC24D /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				EBA27F1B216ED1C4009BC24D /* LoadFile.swift */,
+			);
+			path = utility;
+			sourceTree = "<group>";
+		};
 		EBBE9155211F7AA3005FCA48 /* main_menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +221,7 @@
 				EBA27F16216E798E009BC24D /* RequestSubmittedView.swift */,
 				EBF119272140274C006E84BD /* messages */,
 				EBDAC3A2212F8C6700EB2527 /* SettingsView.swift */,
+				EB506C81216FE5DE001430A3 /* VerifyPasswordView.swift */,
 				EBA27F12216E4537009BC24D /* ChangeSettingView.swift */,
 				EBF08C0A212E34D900E0D8D0 /* PopUpView.swift */,
 				EB2815F12100265200DF82EC /* HomeView.swift */,
@@ -225,6 +238,7 @@
 		EBBE9156211F7B2F005FCA48 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				EBA27F1A216ED1A0009BC24D /* utility */,
 				EB2815DD210019A900DF82EC /* Main.storyboard */,
 				EBA27F14216E6A92009BC24D /* InitialSplashView.swift */,
 				EB2815F521002C1700DF82EC /* SplashScreen.swift */,
@@ -453,6 +467,7 @@
 				EB2815F621002C1700DF82EC /* SplashScreen.swift in Sources */,
 				EBE247BE212B66EF00560012 /* AddSkillView.swift in Sources */,
 				EBA27F13216E4537009BC24D /* ChangeSettingView.swift in Sources */,
+				EB506C82216FE5DE001430A3 /* VerifyPasswordView.swift in Sources */,
 				EB28164A210EAE1F00DF82EC /* SkillSelectView.swift in Sources */,
 				EB2C8EA0211BACE0005D9ABD /* RequestsView.swift in Sources */,
 				EBA27F19216EB7FE009BC24D /* ContactCell.swift in Sources */,
@@ -460,6 +475,7 @@
 				EBF11924213C5A0C006E84BD /* MessageView.swift in Sources */,
 				EB2C8E9C211A9179005D9ABD /* ViewFeedRequestCell.swift in Sources */,
 				EB281620210AB95100DF82EC /* FirstLastView.swift in Sources */,
+				EBA27F1C216ED1C4009BC24D /* LoadFile.swift in Sources */,
 				EB2815DA210019A900DF82EC /* AppDelegate.swift in Sources */,
 				EBF1192B21402789006E84BD /* ListContactView.swift in Sources */,
 				EB2815F22100265200DF82EC /* HomeView.swift in Sources */,

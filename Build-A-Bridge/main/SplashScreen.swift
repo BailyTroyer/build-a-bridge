@@ -56,7 +56,7 @@ class SplashScreen: UIViewController {
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
 //        navigationController?.setNavigationBarHidden(true, animated: false)
-//        
+//
 //    }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -75,6 +75,13 @@ class SplashScreen: UIViewController {
                     print("error: \(String(describing: error))")
                 } else {
                     print("user: \(String(describing: user))")
+                    
+                    //load images into LoadFile
+                    
+                    //for each image
+                    //
+                    
+                    
                     
                     self.performSegue(withIdentifier: "to_menu", sender: self)
                 }

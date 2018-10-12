@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class ChangeSettingView: UIViewController {
     
@@ -18,7 +19,11 @@ class ChangeSettingView: UIViewController {
     var setting: String = ""
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        self.fieldChanged.setBottomBorder()
+        
         print("setting is: \(self.setting)")
         if self.setting == "0" {
             self.settingLabel.text = "First Name"
@@ -36,10 +41,47 @@ class ChangeSettingView: UIViewController {
     }
     
     @IBAction func updateSetting(_ sender: Any) {
-        
+        if self.setting == "3" {
+            if self.fieldChanged.text != nil {
+                Auth.auth().currentUser!.updatePassword(to: self.fieldChanged.text!) { (errror) in
+                    print(errror)
+                }
+            }
+        } else if self.setting == "2" {
+            if self.fieldChanged.text != "" {
+                Auth.auth().currentUser?.updateEmail(to: self.fieldChanged.text!) { (error) in
+                    print("error")
+                }
+            }
+        } else if self.setting == "1" {
+            print("coming soon!")
+            
+        } else if self.setting == "0" {
+            print("coming soon!")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.fieldChanged.becomeFirstResponder()
     }
+    
 }
+
+extension UITextField {
+    func setBottomBorder() {
+        self.borderStyle = .none
+        self.layer.backgroundColor = UIColor.white.cgColor
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+    }
+}
+
+//let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+//changeRequest?.displayName = displayName
+//changeRequest?.commitChanges { (error) in
+//    // ...
+//}

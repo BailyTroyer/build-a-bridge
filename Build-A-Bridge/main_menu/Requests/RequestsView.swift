@@ -45,7 +45,7 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
                     
                     //let name = self.get_name(n_uid: name_uid)
                     
-                    self.ref.child("USERS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let contents = snapshot.value as? NSDictionary
                         
@@ -81,7 +81,7 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
                     
                     //let name = self.get_name(n_uid: name_uid)
                     
-                    self.ref.child("USERS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let contents = snapshot.value as? NSDictionary
                         
@@ -117,7 +117,7 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
                     
                     //let name = self.get_name(n_uid: name_uid)
                     
-                    self.ref.child("USERS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let contents = snapshot.value as? NSDictionary
                         
