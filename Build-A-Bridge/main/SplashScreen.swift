@@ -12,9 +12,10 @@ import Firebase
 
 class SplashScreen: UIViewController {
     
-    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var warningLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,6 @@ class SplashScreen: UIViewController {
         setupKeyboardDismissRecognizer()
         
         warningLabel.text = ""
-        
     }
     
     func setupKeyboardDismissRecognizer() {
@@ -54,22 +54,18 @@ class SplashScreen: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
+//
+//    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func signUp(_ sender: Any) {
-        self.performSegue(withIdentifier: "one", sender: self)
-    }
-    
-    @IBAction func signIn(_ sender: Any) {
+    @IBAction func logIn(_ sender: Any) {
         if emailField.text != "" && passwordField.text != "" {
             
             Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
@@ -81,6 +77,13 @@ class SplashScreen: UIViewController {
                 } else {
                     print("user: \(String(describing: user))")
                     
+                    //load images into LoadFile
+                    
+                    //for each image
+                    //
+                    
+                    
+                    
                     self.performSegue(withIdentifier: "to_menu", sender: self)
                 }
                 
@@ -89,6 +92,15 @@ class SplashScreen: UIViewController {
         } else {
             warningLabel.text = "enter an email and password"
         }
+    }
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        self.performSegue(withIdentifier: "to_splash", sender: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.emailField.becomeFirstResponder()
     }
     
 }

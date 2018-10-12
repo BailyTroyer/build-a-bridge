@@ -65,7 +65,6 @@ class MessageVIew: JSQMessagesViewController {
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
         //let query = Constants.refs.databaseChats.queryLimited(toLast: 10)
-        
         let query = Constants.refs.databaseChats.child("-LJp0_IRtHaavU8JkGbn").child("messageHistory")
         // each message is the n message child [0,1,2,3]
         
@@ -191,7 +190,7 @@ class MessageVIew: JSQMessagesViewController {
         
         let message = ["content": text, "recieverFcmToken": "", "recieverUid": "", "senderName": senderDisplayName, "senderUid": senderId, "timestamp": ""]
         
-        print()
+        print("MESSAGE: \(message)")
         
         /* TODO:
          * - Assure lastUpdated is updated

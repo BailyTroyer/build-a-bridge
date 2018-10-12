@@ -43,38 +43,43 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             //value -> kv pairs of k=uid v=true
             
             let value = snapshot.value as? NSDictionary
-            for skill in value! {
-                let skill_id = skill.key as? String
-                self.ref.child("SKILLS").child(skill_id!).observeSingleEvent(of: .value, with: { (ssnapshot) in
-                
-                    //let n = ssnapshot.value(forKey: "name") as? String
+            
+            print("skills: \(value)")
+            
+            if value != nil {
+                for skill in value! {
+                    let skill_id = skill.key as? String
+                    self.ref.child("SKILLS").child(skill_id!).observeSingleEvent(of: .value, with: { (ssnapshot) in
                     
-                    let v = ssnapshot.value as! NSDictionary
-                    
-                    print("value \(v)")
-                    let n = v.value(forKey: "name") as? String
-                    let d = v.value(forKey: "description") as? String
-                    //print("NAME \(n)")
-                    let pair = name_id(name: n, id: skill_id, desc: d)
-                    //let pair = name_id(name: "name", id: "123")
-                    self.skills_structs.append(pair)
-                    
-                    
-                    //new
-                    let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(skill_id as! String)")
-                    volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            // Data for "images/island.jpg" is returned
-                            let profImage = UIImage(data: data!)
-                            print("appending image")
-                            self.images.append(profImage!)
-                            //self.volunteerPicture.image = profImage
+                        //let n = ssnapshot.value(forKey: "name") as? String
+                        
+                        let v = ssnapshot.value as! NSDictionary
+                        
+                        print("value \(v)")
+                        let n = v.value(forKey: "name") as? String
+                        let d = v.value(forKey: "description") as? String
+                        //print("NAME \(n)")
+                        let pair = name_id(name: n, id: skill_id, desc: d)
+                        //let pair = name_id(name: "name", id: "123")
+                        self.skills_structs.append(pair)
+                        
+                        
+                        //new
+                        let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(skill_id as! String)")
+                        volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            } else {
+                                // Data for "images/island.jpg" is returned
+                                let profImage = UIImage(data: data!)
+                                print("appending image")
+                                self.images.append(profImage!)
+                                //self.volunteerPicture.image = profImage
+                            }
                         }
-                    }
-                    self.skillView.reloadData()
-                })
+                        self.skillView.reloadData()
+                    })
+                }
             }
             self.skillView.reloadData()
         })

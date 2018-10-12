@@ -12,8 +12,9 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     
+    @IBOutlet weak var ticketDetailsMaxLen: UILabel!
     @IBOutlet weak var skillView: UITableView!
     @IBOutlet weak var ticketDate: UILabel!
     @IBOutlet weak var wordsUsed: UILabel!
@@ -37,6 +38,12 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.ticketDetailsMaxLen.text = "0/50"
+        
+        
+        // For character count
+        self.ticketDetails.delegate = self
         
         navigationController?.isToolbarHidden = false
         
@@ -110,12 +117,31 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
         })
     }
     
+    func updateCharacterCount() {
+        let ticketDetails = self.ticketDetails.text.characters.count
+        
+        self.ticketDetailsMaxLen.text = "\((0) + ticketDetails)/50"
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.updateCharacterCount()
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        if(textView == ticketDetails){
+            return ticketDetails.text.characters.count +  (text.characters.count - range.length) <= 50
+        }
+        return false
+    }
+
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    
     @IBAction func submitRequest(_ sender: Any) {
+        print("submitting")
+        
         //var ref: DatabaseReference!
         
         //ref = Database.database().reference()
@@ -150,10 +176,11 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
             
             //[[String:Any]]()
             
-            self.performSegue(withIdentifier: "back_to_feed", sender: self)
+            self.performSegue(withIdentifier: "request_submitted", sender: self)
         }
         
     }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count: \(self.skills.count)")

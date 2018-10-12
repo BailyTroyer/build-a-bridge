@@ -90,11 +90,113 @@ class AdvanceTicketView: UIViewController {
         })
     }
     
-    @IBAction func message(_ sender: Any) {
     
+    @IBAction func message(_ sender: Any) {
+        //Create the message part in DATABSE AND GO TO TABLE VIEW
+        //MAKE TABLE VIEW LOAD MESSAGES
+        //IF USER already set up messages, this should route to message view in messages vc
+        
+        //STEPS:
+        
+        //check if exists, otherwise create:
+        //MESSAGES_BY_USER -> CURRENT_USER -> k:OTHER_USER, v:message_uid
+        //MESSAGES_BY_USER -> OTHER_USER -> k:CURRENT_USER, v:message_uid
+        
+        //print("THIS IS MESSAGES FOR USER: \(self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID))")
+        
+        let m_uid = self.ref.childByAutoId().key
+        print("muid: \(m_uid)")
+        
+        self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID).observeSingleEvent(of: .value, with: { (sshot) in
+
+            //print("pre-contents: \(String(describing: sshot.value as? NSMutableDictionary))")
+
+            if sshot.value as? NSMutableDictionary == nil {
+
+                let calendar = Calendar.current
+                let time=calendar.dateComponents([.hour,.minute,.second,.month,.year,.day], from: Date())
+
+                self.ref.child("MESSAGES").child(m_uid).setValue([
+                    "msgId": "\(m_uid)",
+                    "uid1": "\(self.volunteerUID)",
+                    "uid2": "\(self.requesterUID)",
+                    "lastUpdated": [
+                        "day": time.day,
+                        "hour": time.hour,
+                        "minute": time.minute,
+                        "month": time.month,
+                        "second": time.second,
+                        "year": time.year
+                    ]
+                ])
+
+                self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID).setValue([
+                    "\(self.requesterUID)": "\(m_uid)"
+                ])
+            } else {
+                // forward to vc with messages w/ user
+                print("forward to message UI")
+            }
+        })
+
+        self.ref.child("MESSAGES_BY_USER").child(self.requesterUID).observeSingleEvent(of: .value, with: { (sshot) in
+
+            //print("pre-contents: \(String(describing: sshot.value as? NSMutableDictionary))")
+
+            if sshot.value as? NSMutableDictionary == nil {
+
+                self.ref.child("MESSAGES_BY_USER").child(self.requesterUID).setValue([
+                    "\(self.volunteerUID)": "\(m_uid)"
+                ])
+            } else {
+                print("forward to message UI")
+            }
+        })
+        
+
     }
+    
+    @IBAction func done(_ sender: Any) {
+        complete()
+    }
+    
+    @IBAction func report(_ sender: Any) {
+        print("reporting...")
+    }
+    
     @IBAction func cancel(_ sender: Any) {
+        complete()
+    }
+    
+    
+    func complete() {
+        
+        print("UID TO LOOK FOR: \(self.uid)")
+        
+        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("IN_PROGRESS").child(self.uid).observeSingleEvent(of: .value, with: { (sshot) in
+
+            print("pre-contents: \(sshot.value as? NSMutableDictionary)")
+
+            if let contents = sshot.value as? NSMutableDictionary {
+                print("cnts: \(contents)")
+
+                let setStatus = self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("COMPLETED").child(self.uid)
+                print("change db: \(setStatus)")
+
+                setStatus.setValue(contents)
+
+                setStatus.child("volunteerId").setValue(Auth.auth().currentUser?.uid)
+
+
+                self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("IN_PROGRESS").child(self.uid).removeValue()
+            }
+
+        })
+
+
+        self.ref.child("REQUESTS_BY_USER").child(self.requesterUID).child("IN_PROGRESS_REQUESTER").child(self.uid).removeValue()
+        self.ref.child("REQUESTS_BY_USER").child(self.volunteerUID).child("IN_PROGRESS_VOLUNTEER").child(self.uid).removeValue()
+        
         
     }
-    
 }
