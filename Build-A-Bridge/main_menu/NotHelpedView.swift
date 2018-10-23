@@ -26,6 +26,9 @@ class NotHelpedView: UIViewController {
         self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let contents = snapshot.value as? NSDictionary
+            
+            print("contents: \(String(describing: contents))")
+            
             let t = contents?.value(forKey: "title")
             let description = contents?.value(forKey: "details")
             let skill_id = contents?.value(forKey: "skillId")
@@ -42,7 +45,7 @@ class NotHelpedView: UIViewController {
                 let name = "\(reqFname) \(reqLname)"
                 print("requester name: \(name)")
                 
-                self.rName.text = name as! String
+                self.rName.text = name 
                 
                 let reqPicRref = profPicStorage.reference().child("PROFILE_PICTURES/\(self.requesterUID)")
                 reqPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
@@ -63,12 +66,12 @@ class NotHelpedView: UIViewController {
                 let cnts = sshot.value as? NSDictionary
                 let name = cnts?.value(forKey: "name") as? String
                 
-                print("assiginging skill name \(name)")
+                print("assiginging skill name \(String(describing: name))")
                 self.sName.text = name
             })
             
             
-            self.rDescription.text = description as! String
+            self.rDescription.text = description as? String
             self.navigationItem.title = t as? String
         })
     }
@@ -79,7 +82,7 @@ class NotHelpedView: UIViewController {
         
         self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").child(self.uid).observeSingleEvent(of: .value, with: { (sshot) in
             
-            print("pre-contents: \(sshot.value as? NSMutableDictionary)")
+            print("pre-contents: \(String(describing: sshot.value as? NSMutableDictionary))")
             
             if let contents = sshot.value as? NSMutableDictionary {
                 print("cnts: \(contents)")

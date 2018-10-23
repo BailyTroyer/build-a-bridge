@@ -44,7 +44,7 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             let value = snapshot.value as? NSDictionary
             
-            print("skills: \(value)")
+            print("user skills: \(String(describing: value))")
             
             if value != nil {
                 for skill in value! {

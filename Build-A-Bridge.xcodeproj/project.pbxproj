@@ -43,6 +43,7 @@
 		EBBE914E211F62DF005FCA48 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE914D211F62DF005FCA48 /* MainMenu.storyboard */; };
 		EBBE9150211F789E005FCA48 /* SelectSkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */; };
 		EBBE9159211F7E67005FCA48 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE9158211F7E67005FCA48 /* SelectLocationView.swift */; };
+		EBC3EBF52174DD200014A4AD /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC3EBF42174DD200014A4AD /* Transition.swift */; };
 		EBCDF84D212F5D3F00E2B141 /* NotHelpedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCDF84C212F5D3F00E2B141 /* NotHelpedView.swift */; };
 		EBCDF850212F673F00E2B141 /* NotHelpedRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCDF84F212F673F00E2B141 /* NotHelpedRequestView.swift */; };
 		EBDAC3A3212F8C6700EB2527 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDAC3A2212F8C6700EB2527 /* SettingsView.swift */; };
@@ -53,7 +54,6 @@
 		EBF08C0B212E34D900E0D8D0 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF08C0A212E34D900E0D8D0 /* PopUpView.swift */; };
 		EBF11922213C4BE7006E84BD /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF11921213C4BE7006E84BD /* InitialView.swift */; };
 		EBF11924213C5A0C006E84BD /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF11923213C5A0C006E84BD /* MessageView.swift */; };
-		EBF11926213C5D0C006E84BD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF11925213C5D0C006E84BD /* Constants.swift */; };
 		EBF1192B21402789006E84BD /* ListContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1192A21402789006E84BD /* ListContactView.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +99,7 @@
 		EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSkillsView.swift; sourceTree = "<group>"; };
 		EBBE9158211F7E67005FCA48 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		EBBE915A21236275005FCA48 /* Build-A-Bridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Build-A-Bridge.entitlements"; sourceTree = "<group>"; };
+		EBC3EBF42174DD200014A4AD /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		EBCDF84C212F5D3F00E2B141 /* NotHelpedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotHelpedView.swift; sourceTree = "<group>"; };
 		EBCDF84F212F673F00E2B141 /* NotHelpedRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotHelpedRequestView.swift; sourceTree = "<group>"; };
 		EBDAC3A2212F8C6700EB2527 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		EBF08C0A212E34D900E0D8D0 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		EBF11921213C4BE7006E84BD /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		EBF11923213C5A0C006E84BD /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		EBF11925213C5D0C006E84BD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EBF1192A21402789006E84BD /* ListContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactView.swift; sourceTree = "<group>"; };
 		FADA4DADDAA93503060D1285 /* Pods-Build-A-Bridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Build-A-Bridge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Build-A-Bridge/Pods-Build-A-Bridge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA27F1B216ED1C4009BC24D /* LoadFile.swift */,
+				EBC3EBF42174DD200014A4AD /* Transition.swift */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -219,12 +220,10 @@
 			children = (
 				EBBE914D211F62DF005FCA48 /* MainMenu.storyboard */,
 				EBA27F16216E798E009BC24D /* RequestSubmittedView.swift */,
-				EBF119272140274C006E84BD /* messages */,
-				EBDAC3A2212F8C6700EB2527 /* SettingsView.swift */,
-				EB506C81216FE5DE001430A3 /* VerifyPasswordView.swift */,
-				EBA27F12216E4537009BC24D /* ChangeSettingView.swift */,
 				EBF08C0A212E34D900E0D8D0 /* PopUpView.swift */,
 				EB2815F12100265200DF82EC /* HomeView.swift */,
+				EBF119272140274C006E84BD /* messages */,
+				EBC3EBEF217288260014A4AD /* settings */,
 				EB2C8E9B211A9179005D9ABD /* ViewFeedRequestCell.swift */,
 				EB2C8E8321139BCE005D9ABD /* CreateTicketView.swift */,
 				EB2C8E99211A7DAB005D9ABD /* CreateTicketSkillSelectCell.swift */,
@@ -257,6 +256,16 @@
 			path = SelectSkill;
 			sourceTree = "<group>";
 		};
+		EBC3EBEF217288260014A4AD /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				EBDAC3A2212F8C6700EB2527 /* SettingsView.swift */,
+				EB506C81216FE5DE001430A3 /* VerifyPasswordView.swift */,
+				EBA27F12216E4537009BC24D /* ChangeSettingView.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
 		EBCDF84E212F66EF00E2B141 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,7 +290,6 @@
 		EBF119272140274C006E84BD /* messages */ = {
 			isa = PBXGroup;
 			children = (
-				EBF11925213C5D0C006E84BD /* Constants.swift */,
 				EBF11923213C5A0C006E84BD /* MessageView.swift */,
 				EBF1192A21402789006E84BD /* ListContactView.swift */,
 				EBA27F18216EB7FE009BC24D /* ContactCell.swift */,
@@ -332,6 +340,7 @@
 				TargetAttributes = {
 					EB2815D5210019A900DF82EC = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -449,11 +458,11 @@
 				EB281636210CDC2100DF82EC /* EmailPasswordView.swift in Sources */,
 				EB281648210EAA2700DF82EC /* ProfilePictureView.swift in Sources */,
 				EBA27F17216E798E009BC24D /* RequestSubmittedView.swift in Sources */,
+				EBC3EBF52174DD200014A4AD /* Transition.swift in Sources */,
 				EB2C8EA3211CDBD0005D9ABD /* AdvanceTicketView.swift in Sources */,
 				EBBE9159211F7E67005FCA48 /* SelectLocationView.swift in Sources */,
 				EBE247C6212BAA3000560012 /* SkillView.swift in Sources */,
 				EB2C43C121114E0400676F4F /* SkillSelectCell.swift in Sources */,
-				EBF11926213C5D0C006E84BD /* Constants.swift in Sources */,
 				EB2C8E8421139BCE005D9ABD /* CreateTicketView.swift in Sources */,
 				EBBE9150211F789E005FCA48 /* SelectSkillsView.swift in Sources */,
 				EB2C8E9A211A7DAB005D9ABD /* CreateTicketSkillSelectCell.swift in Sources */,
@@ -633,7 +642,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = J3S3B6RATW.BaBLogic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -653,7 +662,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = J3S3B6RATW.BaBLogic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -63,14 +63,16 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="lX5-JU-aoy" kind="show" id="YKD-0M-RUj"/>
+                                    <segue destination="lX5-JU-aoy" kind="popoverPresentation" popoverAnchorView="NpP-24-Lum" id="YKD-0M-RUj">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-yk-niz">
                                 <rect key="frame" x="16" y="29" width="36" height="36"/>
                                 <state key="normal" image="exit"/>
                                 <connections>
-                                    <segue destination="Rje-AP-OkL" kind="show" id="EtG-Fe-GPd"/>
+                                    <segue destination="Rje-AP-OkL" kind="custom" customClass="DismissSegue" customModule="Build_A_Bridge" customModuleProvider="target" id="EtG-Fe-GPd"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="t3D-t5-dCT">
@@ -678,6 +680,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="YKD-0M-RUj"/>
         <segue reference="k1m-aN-8oq"/>
-        <segue reference="LDh-Wl-MxL"/>
+        <segue reference="OUD-tj-Od6"/>
     </inferredMetricsTieBreakers>
 </document>

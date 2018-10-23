@@ -21,6 +21,8 @@ struct request {
 
 class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
     @IBOutlet weak var requestsView: UITableView!
     var ref = Database.database().reference()
 
@@ -29,6 +31,7 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("IN_PROGRESS_VOLUNTEER").observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
@@ -214,5 +217,10 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         
     }
+    
+    @IBAction func segmentChanged(_ sender: Any) {
+        print("selected: \(self.segmentControl.selectedSegmentIndex)")
+    }
+    
     
 }
