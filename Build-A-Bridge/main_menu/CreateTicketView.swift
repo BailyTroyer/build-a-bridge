@@ -99,17 +99,24 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
                 print("SKILL UID: \(uid as? String)")
                 
                 //set image to profilePic of requester
-                let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid /* + ".jpeg"*/)")
-                volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        // Data for "images/island.jpg" is returned
-                        let profImage = UIImage(data: data!)
-                        self.images.append(profImage as! UIImage)
-                        //self.volunteerPicture.image = profImage
-                    }
-                }
+//                let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid /* + ".jpeg"*/)")
+//                volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+//                    if let error = error {
+//                        print(error.localizedDescription)
+//                    } else {
+//                        // Data for "images/island.jpg" is returned
+//                        let profImage = UIImage(data: data!)
+//                        self.images.append(profImage as! UIImage)
+//                        //self.volunteerPicture.image = profImage
+//                    }
+//                }
+                
+                print("PATH:")
+                print("Assets.xcassets/\(uid)")
+                let profImage = UIImage(named: uid)
+                print("appending image")
+                self.images.append(profImage ?? #imageLiteral(resourceName: "skills_general"))
+                self.skillView.reloadData()
                 
             }
             self.skillView.reloadData()

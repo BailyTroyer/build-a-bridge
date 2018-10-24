@@ -48,8 +48,8 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             if value != nil {
                 for skill in value! {
-                    let skill_id = skill.key as? String
-                    self.ref.child("SKILLS").child(skill_id!).observeSingleEvent(of: .value, with: { (ssnapshot) in
+                    let skill_id = skill.key as! String
+                    self.ref.child("SKILLS").child(skill_id).observeSingleEvent(of: .value, with: { (ssnapshot) in
                     
                         //let n = ssnapshot.value(forKey: "name") as? String
                         
@@ -65,18 +65,23 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         
                         
                         //new
-                        let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(skill_id as! String)")
-                        volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            } else {
-                                // Data for "images/island.jpg" is returned
-                                let profImage = UIImage(data: data!)
-                                print("appending image")
-                                self.images.append(profImage!)
-                                //self.volunteerPicture.image = profImage
-                            }
-                        }
+//                        let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(skill_id as! String)")
+//                        volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+//                            if let error = error {
+//                                print(error.localizedDescription)
+//                            } else {
+//                                // Data for "images/island.jpg" is returned
+//                                let profImage = UIImage(data: data!)
+//                                print("appending image")
+//                                self.images.append(profImage!)
+//                                //self.volunteerPicture.image = profImage
+//                            }
+//                        }
+                        print("PATH:")
+                        print("Assets.xcassets/\(skill_id)")
+                        let profImage = UIImage(named: skill_id as! String)
+                        print("appending image")
+                        self.images.append(profImage ?? #imageLiteral(resourceName: "skills_general"))
                         self.skillView.reloadData()
                     })
                 }
@@ -198,5 +203,6 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             vc.desc = self.current_selected_desc
         }
     }
+    
     
 }

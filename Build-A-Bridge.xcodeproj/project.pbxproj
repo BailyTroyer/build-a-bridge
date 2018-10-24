@@ -155,6 +155,7 @@
 		EB2815D8210019A900DF82EC /* Build-A-Bridge */ = {
 			isa = PBXGroup;
 			children = (
+				EB2815E0210019AC00DF82EC /* Assets.xcassets */,
 				EBBE915A21236275005FCA48 /* Build-A-Bridge.entitlements */,
 				EB2815E5210019AC00DF82EC /* Info.plist */,
 				EB2815FF21029C6E00DF82EC /* GoogleService-Info.plist */,
@@ -201,7 +202,6 @@
 				EB2815E2210019AC00DF82EC /* LaunchScreen.storyboard */,
 				EBBE914F211F789E005FCA48 /* SelectSkillsView.swift */,
 				EB2815D9210019A900DF82EC /* AppDelegate.swift */,
-				EB2815E0210019AC00DF82EC /* Assets.xcassets */,
 			);
 			path = other;
 			sourceTree = "<group>";
