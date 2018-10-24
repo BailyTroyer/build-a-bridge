@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import UIEmptyState
 
 struct ticket {
     var title:String
@@ -18,7 +19,7 @@ struct ticket {
     //var details:String
 }
 
-class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource, UIEmptyStateDataSource, UIEmptyStateDelegate {
     
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var userName: UILabel!
@@ -39,35 +40,22 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var images = [Any]()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-//        navigationController?.isToolbarHidden = true
+        //EMPTY STATE
+        self.emptyStateDataSource = self
+        self.emptyStateDelegate = self
+        // Optionally remove seperator lines from empty cells
+        self.ticketView.tableFooterView = UIView(frame: CGRect.zero)
+        self.reloadEmptyStateForTableView(self.ticketView)
+        //EMPTY STATE
+
         
         userName.text = Auth.auth().currentUser?.displayName
         print("display name: \(Auth.auth().currentUser?.displayName)")
         
         warningLabel.text = ""
-        
-        //background image
-//        let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
-//
-//        let picRref = profPicStorage.reference().child("PROFILE_PICTURES/\((Auth.auth().currentUser?.uid)! + ".jpeg")")
-//
-//
-//        picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else {
-//                // Data for "images/island.jpg" is returned
-//                let profImage = UIImage(data: data!)
-//                self.profilePicture.image = profImage
-//            }
-//        }
-//
-//        leading_constraint.constant = -240
-//        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
-//        profilePicture.layer.masksToBounds = true
-        
         self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
@@ -86,10 +74,10 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         self.titles.append(t)
                         
                         let requestUID = contents?.value(forKey: "requestId")
-                        self.requestUIDS.append(requestUID)
+                        self.requestUIDS.append(requestUID!)
                         
                         //print(uid)
-                        self.uids.append(uid)
+                        self.uids.append(uid!)
                         
                         self.ref.child("USER_ID_DIRECTORY").child(uid as! String).observeSingleEvent(of: .value, with: { (sshot) in
                             let v = sshot.value as? NSDictionary
@@ -114,26 +102,51 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-//    @IBAction func menu_selected(_ sender: Any) {
-//        print("menu selected")
-//        if menu_showing {
-//            leading_constraint.constant = -240
-//            UIView.animate(withDuration: 0.1, animations: {
-//                self.view.layoutIfNeeded()
-//            })
-//        } else {
-//            leading_constraint.constant = 0
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.view.layoutIfNeeded()
-//            })
-//        }
-//
-//        menu_showing = !menu_showing
+    // MARK: - Empty State Data Source
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Set the initial state of the tableview, called here because cells should be done loading by now
+        // Number of cells are used to determine if the view should be shown or not
+        self.reloadEmptyStateForTableView(self.ticketView)
+    }
+    
+    var emptyStateImage: UIImage? {
+        let img = #imageLiteral(resourceName: "cactus")
+        return img
+    }
+    
+    var emptyStateTitle: NSAttributedString {
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
+        return NSAttributedString(string: "No Tickets in your Area!", attributes: attrs)
+    }
+    
+//    var emptyStateButtonTitle: NSAttributedString? {
+//        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.white,
+//                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
+//        return NSAttributedString(string: "Submit one to see if anyone's out there", attributes: attrs)
 //    }
+    
+//    var emptyStateButtonSize: CGSize? {
+//        return CGSize(width: 100, height: 40)
+//    }
+    
+    
+    // MARK: - Empty State Delegate
+    
+    func emptyStateViewWillShow(view: UIView) {
+        guard let emptyView = view as? UIEmptyStateView else { return }
+        // Some custom button stuff
+        emptyView.button.layer.cornerRadius = 5
+        emptyView.button.layer.borderWidth = 1
+        emptyView.button.layer.borderColor = UIColor.red.cgColor
+        emptyView.button.layer.backgroundColor = UIColor.red.cgColor
+    }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("count: \(names.count)")
+        print("count: \(names.count)")
         return names.count
     }
     

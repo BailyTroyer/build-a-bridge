@@ -18,8 +18,13 @@ class ContactCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        contactImage.layer.cornerRadius = contactImage.frame.height/2
-        contactImage.layer.masksToBounds = true
+//        contactImage.layer.cornerRadius = contactImage.frame.height/2
+//        contactImage.layer.masksToBounds = true
+        
+        contactImage?.layer.cornerRadius = (contactImage?.frame.size.width ?? 0.0) / 2
+        contactImage?.clipsToBounds = true
+        contactImage?.layer.borderWidth = 3.0
+        contactImage?.layer.borderColor = UIColor.white.cgColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

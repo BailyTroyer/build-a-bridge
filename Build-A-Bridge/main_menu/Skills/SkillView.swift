@@ -115,7 +115,7 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.row <= self.skills_structs.count-1 {
             //cell.skillName.text = self.skills[indexPath.row]
-            print("name of cell: \(self.skills_structs[indexPath.row].name)")
+            print("name of cell: \(String(describing: self.skills_structs[indexPath.row].name))")
             cell.skillName.text = self.skills_structs[indexPath.row].name
         }
         

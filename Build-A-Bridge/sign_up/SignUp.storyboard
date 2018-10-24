@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-yk-niz">
-                                <rect key="frame" x="16" y="29" width="36" height="36"/>
+                                <rect key="frame" x="16" y="29" width="72" height="72"/>
                                 <state key="normal" image="exit"/>
                                 <connections>
                                     <segue destination="Rje-AP-OkL" kind="custom" customClass="DismissSegue" customModule="Build_A_Bridge" customModuleProvider="target" id="EtG-Fe-GPd"/>
@@ -292,7 +292,7 @@
                         <outlet property="phoneNumber" destination="VLP-0e-aeo" id="2mZ-oq-qb4"/>
                         <outlet property="warningLabel" destination="j4Q-XJ-d4H" id="rVC-am-M6D"/>
                         <segue destination="H76-gZ-pmh" kind="show" identifier="to_email" id="k1m-aN-8oq"/>
-                        <segue destination="lX5-JU-aoy" kind="show" identifier="back_to" id="LTy-o1-ZFc"/>
+                        <segue destination="lX5-JU-aoy" kind="custom" identifier="back_to" customClass="DismissSegue" customModule="Build_A_Bridge" customModuleProvider="target" id="LTy-o1-ZFc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Gm-Ia-Kvv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,7 +380,7 @@
                         <outlet property="email" destination="zYS-Yf-Pfk" id="iUK-yz-ACI"/>
                         <outlet property="password" destination="75S-Bd-qcv" id="ynG-XP-jBI"/>
                         <outlet property="warningLabel" destination="K4C-23-n0J" id="qdW-4T-DbQ"/>
-                        <segue destination="gAJ-Gu-fLm" kind="show" identifier="return_email" id="LDh-Wl-MxL"/>
+                        <segue destination="gAJ-Gu-fLm" kind="custom" identifier="return_email" customClass="DismissSegue" customModule="Build_A_Bridge" customModuleProvider="target" id="LDh-Wl-MxL"/>
                         <segue destination="r6a-C7-85a" kind="show" identifier="to_profile_pic" id="02e-kl-chF"/>
                     </connections>
                 </viewController>
@@ -400,7 +400,7 @@
                                 <rect key="frame" x="16" y="29" width="48" height="48"/>
                                 <state key="normal" image="left"/>
                                 <connections>
-                                    <segue destination="H76-gZ-pmh" kind="show" id="Bon-wf-zEf"/>
+                                    <segue destination="H76-gZ-pmh" kind="custom" customClass="DismissSegue" customModule="Build_A_Bridge" customModuleProvider="target" id="Bon-wf-zEf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gca-TE-dsD">
@@ -475,7 +475,7 @@
                                 <rect key="frame" x="16" y="29" width="48" height="48"/>
                                 <state key="normal" image="left"/>
                                 <connections>
-                                    <segue destination="eYr-F6-Nch" kind="show" id="cfm-pq-sNL"/>
+                                    <segue destination="eYr-F6-Nch" kind="custom" customClass="DismissSegue" customModule="Build_A_Bridge" customModuleProvider="target" id="cfm-pq-sNL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First things first" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7V-y5-aut">
@@ -672,14 +672,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" width="18" height="18"/>
-        <image name="default_profile" width="36" height="36"/>
-        <image name="exit" width="36" height="36"/>
+        <image name="circle" width="36" height="36"/>
+        <image name="default_profile" width="72" height="72"/>
+        <image name="exit" width="72" height="72"/>
         <image name="left" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YKD-0M-RUj"/>
-        <segue reference="k1m-aN-8oq"/>
-        <segue reference="OUD-tj-Od6"/>
+        <segue reference="LTy-o1-ZFc"/>
+        <segue reference="Bon-wf-zEf"/>
+        <segue reference="LDh-Wl-MxL"/>
     </inferredMetricsTieBreakers>
 </document>

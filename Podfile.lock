@@ -58,6 +58,7 @@ PODS:
   - Protobuf (3.6.0)
   - RAMAnimatedTabBarController (3.5.0)
   - ReactiveKit (3.9.6)
+  - UIEmptyState (3.2.0)
   - ViewAnimator (2.1.1)
 
 DEPENDENCIES:
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - MessageKit
   - RAMAnimatedTabBarController
   - ReactiveKit
+  - UIEmptyState
   - ViewAnimator
 
 SPEC REPOS:
@@ -92,6 +94,7 @@ SPEC REPOS:
     - Protobuf
     - RAMAnimatedTabBarController
     - ReactiveKit
+    - UIEmptyState
     - ViewAnimator
 
 SPEC CHECKSUMS:
@@ -113,8 +116,9 @@ SPEC CHECKSUMS:
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   RAMAnimatedTabBarController: 7e259e89b669c7bc833a6441c7d8fbfd6580f473
   ReactiveKit: 804d3093ad42dee0de19e42d4f7dcae9c14364b0
+  UIEmptyState: cc6ff21e9f1a42e5795bd6b08dcaa1f5ec61d33c
   ViewAnimator: 43c31539508d995ea2c5e98338211f7c009b358f
 
-PODFILE CHECKSUM: 94f0ffdaecbeea42842676c6bfd20ab6fb5bfbc5
+PODFILE CHECKSUM: 2f57c4cc3c97a0ab06926a97b432bb50eae03030
 
 COCOAPODS: 1.5.3
