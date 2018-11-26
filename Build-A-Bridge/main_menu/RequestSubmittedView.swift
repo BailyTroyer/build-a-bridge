@@ -21,6 +21,7 @@ class RequestSubmittedView: UIViewController {
     }
     
     @IBAction func done(_ sender: Any) {
-        self.performSegue(withIdentifier: "done_request_create", sender: self)
+        //self.performSegue(withIdentifier: "done_request_create", sender: self)
+        self.performSegue(withIdentifier: "go_back", sender: self)
     }
 }

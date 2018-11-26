@@ -43,6 +43,7 @@ class EmailPasswordView: UIViewController {
         addButton.tintColor = UIColor.black
         keyboardToolbar.items = [addButton]
         email.inputAccessoryView = keyboardToolbar
+        email.keyboardType = UIKeyboardType.emailAddress
         password.inputAccessoryView = keyboardToolbar
         
         

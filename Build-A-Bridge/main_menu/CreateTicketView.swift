@@ -170,7 +170,7 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
             
             var uid = Auth.auth().currentUser?.uid
             
-            let subRequestByUser = self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").child(subRequest.key)
+            let subRequestByUser = self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").child(subRequest.key!)
             subRequestByUser.setValue([
                 "details": ticketDetails.text,
                 "requestId": subRequest.key,

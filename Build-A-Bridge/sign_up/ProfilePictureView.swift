@@ -60,12 +60,12 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             
             
             // Create a reference to the file you want to upload
-            let uploadPic = storageRef.child("PROFILE_PICTURES").child(userUid! + ".jpeg")
-            
+//            let uploadPic = storageRef.child("PROFILE_PICTURES").child(userUid! + ".jpeg")
+            let uploadPic = storageRef.child("PROFILE_PICTURES").child(userUid!)
             var data = NSData()
             data = image.jpegData(compressionQuality: 0.8)! as NSData
             // set upload path
-            let filePath = "\(Auth.auth().currentUser!.uid)/\("userPhoto")"
+            //let filePath = "\(Auth.auth().currentUser!.uid)/\("userPhoto")"
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpeg"
             

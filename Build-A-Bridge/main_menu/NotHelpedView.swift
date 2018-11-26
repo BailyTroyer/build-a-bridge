@@ -19,6 +19,11 @@ class NotHelpedView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let sv = UIViewController.displaySpinner(onView: self.view)
         
         let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
         print("UID SENT NOT HELPED VIEW: \(uid)")
@@ -45,35 +50,49 @@ class NotHelpedView: UIViewController {
                 let name = "\(reqFname) \(reqLname)"
                 print("requester name: \(name)")
                 
-                self.rName.text = name 
+                self.rName.text = name
+                
+                let skImage = UIImage(named: skill_id as! String)
+                self.sImage.image = skImage
+                self.ref.child("SKILLS").child((skill_id as? String)!).observeSingleEvent(of: .value, with: { (sshot) in
+                    let cnts = sshot.value as? NSDictionary
+                    let name = cnts?.value(forKey: "name") as? String
+                    
+                    print("assiginging skill name \(String(describing: name))")
+                    self.sName.text = name
+                })
+                
+                self.rDescription.text = description as? String
+                self.navigationItem.title = t as? String
                 
                 let reqPicRref = profPicStorage.reference().child("PROFILE_PICTURES/\(self.requesterUID)")
+                let sv = UIViewController.displaySpinner(onView: self.view)
                 reqPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
                     if let error = error {
-                        print(error.localizedDescription)
+                        print(error)
+                        print("aint no photo")
+                        self.rImage.image = #imageLiteral(resourceName: "default_profile")
+                        print("remove spinner")
+                        UIViewController.removeSpinner(spinner: sv)
                     } else {
                         // Data for "images/island.jpg" is returned
                         let profImage = UIImage(data: data!)
                         self.rImage.image = profImage
                         self.rImage.layer.cornerRadius = self.rImage.frame.height/2
                         self.rImage.layer.masksToBounds = true
+                        print("remove spinner")
+                        UIViewController.removeSpinner(spinner: sv)
                     }
                 }
                 
-            })
-            
-            self.ref.child("SKILLS").child((skill_id as? String)!).observeSingleEvent(of: .value, with: { (sshot) in
-                let cnts = sshot.value as? NSDictionary
-                let name = cnts?.value(forKey: "name") as? String
+                print("remove spinner")
+                UIViewController.removeSpinner(spinner: sv)
                 
-                print("assiginging skill name \(String(describing: name))")
-                self.sName.text = name
             })
-            
-            
-            self.rDescription.text = description as? String
-            self.navigationItem.title = t as? String
+            print("remove spinner")
+            UIViewController.removeSpinner(spinner: sv)
         })
+
     }
     
     @IBAction func help(_ sender: Any) {

@@ -62,21 +62,7 @@ class SkillView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         let pair = name_id(name: n, id: skill_id, desc: d)
                         //let pair = name_id(name: "name", id: "123")
                         self.skills_structs.append(pair)
-                        
-                        
-                        //new
-//                        let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(skill_id as! String)")
-//                        volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-//                            if let error = error {
-//                                print(error.localizedDescription)
-//                            } else {
-//                                // Data for "images/island.jpg" is returned
-//                                let profImage = UIImage(data: data!)
-//                                print("appending image")
-//                                self.images.append(profImage!)
-//                                //self.volunteerPicture.image = profImage
-//                            }
-//                        }
+
                         print("PATH:")
                         print("Assets.xcassets/\(skill_id)")
                         let profImage = UIImage(named: skill_id as! String)

@@ -50,5 +50,6 @@ class NotHelpedRequestView: UIViewController {
         print("request test: \(subRequest)")
         
         let subRequestByUser = self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").child(self.u_Uid).removeValue()
+        
     }
 }

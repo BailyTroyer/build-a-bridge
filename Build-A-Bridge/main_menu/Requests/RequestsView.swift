@@ -29,153 +29,73 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
     var requests = [request]()
     var selectedRequest: request?
     
+    typealias FinishedDownload = () -> ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("IN_PROGRESS_VOLUNTEER").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            
-            if value != nil {
-                for r in value! {
-                    print(r)
-                    let k = r.key as? String
-                    let contents = value?.value(forKey: k!) as? NSDictionary
-                    let uid = contents?.value(forKey: "requestId") as! String
-                    let name_uid = contents?.value(forKey: "volunteerId") as! String
-                    let title = contents?.value(forKey: "title") as! String
-                    let desc = contents?.value(forKey: "details") as! String
-                    
-                    //let name = self.get_name(n_uid: name_uid)
-                    
-                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let contents = snapshot.value as? NSDictionary
-                        
-                        var f = (contents?.value(forKey: "firstName") as? String)!
-                        var l = (contents?.value(forKey: "lastName") as? String)!
-                        
-                        let rq = request(uid: uid, type: "0", name: "\(f) \(l)", title: title, desc: desc)
-                        self.requests.append(rq)
-                        
-                        self.requestsView.reloadData()
-                    })
-                    
-                }
-            }
-        
-            self.requestsView.reloadData()
-        })
-        
-        
-        self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            
-            if value != nil {
-                for r in value! {
-                    print(r)
-                    let k = r.key as? String
-                    let contents = value?.value(forKey: k!) as? NSDictionary
-                    let uid = contents?.value(forKey: "requestId") as! String
-                    let name_uid = contents?.value(forKey: "requesterId") as! String
-                    let title = contents?.value(forKey: "title") as! String
-                    let desc = contents?.value(forKey: "details") as! String
-                    
-                    //let name = self.get_name(n_uid: name_uid)
-                    
-                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let contents = snapshot.value as? NSDictionary
-                        
-                        var f = (contents?.value(forKey: "firstName") as? String)!
-                        var l = (contents?.value(forKey: "lastName") as? String)!
-                        
-                        let rq = request(uid: uid, type: "1", name: "\(f) \(l)", title: title, desc: desc)
-                        self.requests.append(rq)
-                        
-                        self.requestsView.reloadData()
-                    })
-                
-                }
-            }
-            
-            self.requestsView.reloadData()
-        })
-        
+    }
     
-        self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("IN_PROGRESS_REQUESTER").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            
-            if value != nil {
-                for r in value! {
-                    print(r)
-                    let k = r.key as? String
-                    let contents = value?.value(forKey: k!) as? NSDictionary
-                    let uid = contents?.value(forKey: "requestId") as! String
-                    let name_uid = contents?.value(forKey: "requesterId") as! String
-                    let title = contents?.value(forKey: "title") as! String
-                    let desc = contents?.value(forKey: "details") as! String
-                    
-                    //let name = self.get_name(n_uid: name_uid)
-                    
-                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let contents = snapshot.value as? NSDictionary
-                        
-                        var f = (contents?.value(forKey: "firstName") as? String)!
-                        var l = (contents?.value(forKey: "lastName") as? String)!
-                        
-                        let rq = request(uid: uid, type: "2", name: "\(f) \(l)", title: title, desc: desc)
-                        self.requests.append(rq)
-                        
-                        self.requestsView.reloadData()
-                    })
-                    
-                }
-            }
-            
-            self.requestsView.reloadData()
-        })
-        
+    override func viewDidAppear(_ animated: Bool) {
+        print("requests view did appear")
+        print("preselected: \(self.segmentControl.selectedSegmentIndex)")
+        //self.load_out()
+        self.load_out()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.navigationController?.isNavigationBarHidden = true
+        //self.load_data()
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         if let index = self.requestsView.indexPathForSelectedRow{
             self.requestsView.deselectRow(at: index, animated: true)
             print("trying to deselect")
         }
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.isNavigationBarHidden = false
-//    }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.requests.count
+        //return self.requests.count
+        switch self.segmentControl.selectedSegmentIndex {
+        case 0:
+            //self.load_out()
+            return self.requests.count
+        case 1:
+            //self.load_in()
+            return self.requests.count
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! ViewFeedRequestCell
-        
-        //ERROR HERE
-        //print("this is what goes in: names: \(self.names[indexPath.row] as? String) titles: \(self.titles[indexPath.row] as? String)")
-
-        //INDEX OUT OF RANGE HERE
-        
+        print("-------")
         if indexPath.row <= self.requests.count-1 {
-            cell.nameText.text = self.requests[indexPath.row].name
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                print("selected idx 0")
+                if self.requests[indexPath.row].type! == "0" || self.requests[indexPath.row].type! == "2" {
+                    print("showing type 0/2")
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! ViewFeedRequestCell
+                    cell.nameText.text = self.requests[indexPath.row].name
+                    cell.titleText.text = self.requests[indexPath.row].title
+                    return (cell)
+                }
+            } else if self.segmentControl.selectedSegmentIndex == 1 {
+                print("selected idx 1")
+                if self.requests[indexPath.row].type == "1" {
+                    print("showing type 1")
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! ViewFeedRequestCell
+                    cell.nameText.text = self.requests[indexPath.row].name
+                    cell.titleText.text = self.requests[indexPath.row].title
+                    return (cell)
+                } else {
+                    print("doing nothing")
+                }
+            }
         }
         
-        if indexPath.row <= self.requests.count-1 {
-            cell.titleText.text = self.requests[indexPath.row].title
-        }
+        print("-------")
         
-        return (cell)
+        return tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! ViewFeedRequestCell
     }
 
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
@@ -219,8 +139,168 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func segmentChanged(_ sender: Any) {
-        print("selected: \(self.segmentControl.selectedSegmentIndex)")
+        //print("selected: \(self.segmentControl.selectedSegmentIndex)")
+        switch self.segmentControl.selectedSegmentIndex {
+        case 0:
+            print("callng load out")
+            self.load_out()
+        case 1:
+            self.load_in()
+        default:
+            break
+        }
     }
     
+//    func load_data() {
+//        self.requests = []
+//        self.requestsView.reloadData()
+//        let sv = UIViewController.displaySpinner(onView: self.view)
+//
+//    }
+    
+    func load_in() {
+        self.requests = []
+        print("empty requests: \(self.requests)")
+        print("=starting load in=")
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            print("snapshot: \(value)")
+            
+            if value != nil {
+                for r in value! {
+                    //print(r)
+                    let k = r.key as? String
+                    let contents = value?.value(forKey: k!) as? NSDictionary
+                    let uid = contents?.value(forKey: "requestId") as! String
+                    let name_uid = contents?.value(forKey: "requesterId") as! String
+                    let title = contents?.value(forKey: "title") as! String
+                    let desc = contents?.value(forKey: "details") as! String
+                    
+                    //let name = self.get_name(n_uid: name_uid)
+                    
+                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let contents = snapshot.value as? NSDictionary
+                        
+                        let f = (contents?.value(forKey: "firstName") as? String)!
+                        let l = (contents?.value(forKey: "lastName") as? String)!
+                        
+                        let rq = request(uid: uid, type: "1", name: "\(f) \(l)", title: title, desc: desc)
+                        self.requests.append(rq)
+                        
+                        print("TYPE: 1")
+                        //self.requestsView.reloadData()
+                        UIViewController.removeSpinner(spinner: sv)
+                        print("reloading data")
+                        print("=ending load=")
+                        print("after load: \(self.requests)")
+                        self.requestsView.reloadData()
+                    })
+                }
+            } else {
+                UIViewController.removeSpinner(spinner: sv)
+                print("reloading data")
+                print("=ending load=")
+                print("after load: \(self.requests)")
+                self.requestsView.reloadData()
+            }
+            //self.requestsView.reloadData()
+        })
+    }
+    
+    func load_out() {
+        print("=starting load out=")
+        self.requests = []
+        print("empty requests: \(self.requests)")
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        
+        self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("IN_PROGRESS_VOLUNTEER").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            if value != nil {
+                for r in value! {
+                    //print(r)
+                    let k = r.key as? String
+                    let contents = value?.value(forKey: k!) as? NSDictionary
+                    let uid = contents?.value(forKey: "requestId") as! String
+                    let name_uid = contents?.value(forKey: "volunteerId") as! String
+                    let title = contents?.value(forKey: "title") as! String
+                    let desc = contents?.value(forKey: "details") as! String
+                    
+                    //let name = self.get_name(n_uid: name_uid)
+                    
+                    self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let contents = snapshot.value as? NSDictionary
+                        
+                        let f = (contents?.value(forKey: "firstName") as? String)!
+                        let l = (contents?.value(forKey: "lastName") as? String)!
+                        
+                        let rq = request(uid: uid, type: "0", name: "\(f) \(l)", title: title, desc: desc)
+                        self.requests.append(rq)
+                        
+                        print("TYPE: 0")
+                        
+                        //self.requestsView.reloadData()
+                    })
+                    
+                }
+            } else {
+                UIViewController.removeSpinner(spinner: sv)
+                print("reloading data")
+                print("=ending load=")
+                print("after load: \(self.requests)")
+                self.requestsView.reloadData()
+            }
+            //self.requestsView.reloadData()
+            
+            //----------------------------------------------------------------------
+            
+            self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("IN_PROGRESS_REQUESTER").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let value = snapshot.value as? NSDictionary
+                
+                if value != nil {
+                    for r in value! {
+                        //print(r)
+                        let k = r.key as? String
+                        let contents = value?.value(forKey: k!) as? NSDictionary
+                        let uid = contents?.value(forKey: "requestId") as! String
+                        let name_uid = contents?.value(forKey: "requesterId") as! String
+                        let title = contents?.value(forKey: "title") as! String
+                        let desc = contents?.value(forKey: "details") as! String
+                        
+                        //let name = self.get_name(n_uid: name_uid)
+                        
+                        self.ref.child("USER_ID_DIRECTORY").child(name_uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                            
+                            let contents = snapshot.value as? NSDictionary
+                            
+                            let f = (contents?.value(forKey: "firstName") as? String)!
+                            let l = (contents?.value(forKey: "lastName") as? String)!
+                            
+                            let rq = request(uid: uid, type: "2", name: "\(f) \(l)", title: title, desc: desc)
+                            self.requests.append(rq)
+                            
+                            print("TYPE: 2")
+                            
+                            //self.requestsView.reloadData()
+                            UIViewController.removeSpinner(spinner: sv)
+                            print("=ending load=")
+                            print("after load: \(self.requests)")
+                            self.requestsView.reloadData()
+                        })
+                        
+                    }
+                }
+                
+                //self.requestsView.reloadData()
+            })
+            
+        })
+        
+    }
     
 }
