@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import UIEmptyState
 
 struct ticket {
     var title:String
@@ -18,7 +19,7 @@ struct ticket {
     //var details:String
 }
 
-class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource, UIEmptyStateDataSource, UIEmptyStateDelegate {
     
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var userName: UILabel!
@@ -38,114 +39,82 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var uids = [Any]()
     var images = [Any]()
     
+    var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        navigationController?.isToolbarHidden = true
+        print("inside feed view")
+        
+        //EMPTY STATE
+        
+        //self.emptyStateDataSource = self
+        //self.emptyStateDelegate = self
+        
+        // Optionally remove seperator lines from empty cells
+        self.ticketView.tableFooterView = UIView(frame: CGRect.zero)
+        self.reloadEmptyStateForTableView(self.ticketView)
+        //EMPTY STATE
+
         
         userName.text = Auth.auth().currentUser?.displayName
         print("display name: \(Auth.auth().currentUser?.displayName)")
         
         warningLabel.text = ""
         
-        //background image
-        let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
-        let picRref = profPicStorage.reference().child("PROFILE_PICTURES/\((Auth.auth().currentUser?.uid)! + ".jpeg")")
-        
-        
-        picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                // Data for "images/island.jpg" is returned
-                let profImage = UIImage(data: data!)
-                self.profilePicture.image = profImage
-            }
-        }
-        
-        leading_constraint.constant = -240
-        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
-        profilePicture.layer.masksToBounds = true
-        
-        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            //print(value)
-            
-            if snapshot.value as? NSDictionary != nil {
-                
-                for user in value! {
-                    let contents = user.value as? NSDictionary
-                    
-                    let uid = contents?.value(forKey: "requesterId") as? String
-                    
-                    if uid != Auth.auth().currentUser?.uid {
-                        let t = contents?.value(forKey: "title")
-                        //print(t)
-                        self.titles.append(t)
-                        
-                        let requestUID = contents?.value(forKey: "requestId")
-                        self.requestUIDS.append(requestUID)
-                        
-                        //print(uid)
-                        self.uids.append(uid)
-                        
-                        self.ref.child("USER_ID_DIRECTORY").child(uid as! String).observeSingleEvent(of: .value, with: { (sshot) in
-                            let v = sshot.value as? NSDictionary
-                            //print(v)
-                            
-                            let fName = v?.value(forKey: "firstName") as! String
-                            let lName = v?.value(forKey: "lastName") as! String
-                            let name = "\(fName) \(lName)"
-                            
-                            self.names.append(name)
-                            
-                            self.ticketView.reloadData()
-                        })
-                    }
-                    
-                }
-                self.ticketView.reloadData()
-            }
-            
-        })
-        
-        
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        ticketView.refreshControl = refreshControl
     }
     
-    @IBAction func menu_selected(_ sender: Any) {
-        print("menu selected")
-        if menu_showing {
-            leading_constraint.constant = -240
-            UIView.animate(withDuration: 0.1, animations: {
-                self.view.layoutIfNeeded()
-            })
-        } else {
-            leading_constraint.constant = 0
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        print("Hello World!")
         
-        menu_showing = !menu_showing
-    }
-    
-    
-    @IBAction func logOut(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            self.performSegue(withIdentifier: "sign_out", sender: self)
-        } catch let signOutError as NSError {
-            warningLabel.textColor = UIColor.red
-            warningLabel.text = signOutError.localizedDescription
-            print ("Error signing out: %@", signOutError)
-        }
+        // somewhere in your code you might need to call:
+        refreshControl.endRefreshing()
     }
 
+    
+    // MARK: - Empty State Data Source
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("inside feed view did appear")
+        
+        self.load_data()
+        
+        // Set the initial state of the tableview, called here because cells should be done loading by now
+        // Number of cells are used to determine if the view should be shown or not
+        self.reloadEmptyStateForTableView(self.ticketView)
+    }
+    
+    var emptyStateImage: UIImage? {
+        let img = #imageLiteral(resourceName: "cactus")
+        return img
+    }
+    
+    var emptyStateTitle: NSAttributedString {
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
+        return NSAttributedString(string: "Seems like nobody's out there just yet!", attributes: attrs)
+    }
+    
+    func emptyStateViewWillShow(view: UIView) {
+        guard let emptyView = view as? UIEmptyStateView else { return }
+        // Some custom button stuff
+        emptyView.button.layer.cornerRadius = 5
+        emptyView.button.layer.borderWidth = 1
+        emptyView.button.layer.borderColor = UIColor.red.cgColor
+        emptyView.button.layer.backgroundColor = UIColor.red.cgColor
+    }
+    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("count: \(names.count)")
+        print("count: \(names.count)")
         return names.count
     }
     
@@ -171,6 +140,8 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.selectedSkill = self.requestUIDS[indexPath.row] as! String
         print("selected skill var: \(self.selectedSkill)")
         
+        self.ticketView.deselectRow(at: indexPath, animated: true)
+        
         self.performSegue(withIdentifier: "detail_ticket", sender: self)
     }
 
@@ -190,7 +161,89 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.hidesBottomBarWhenPushed = true
         }
     }
+    
+    func load_data() {
+       
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        self.wipe_feed()
+        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            //print(value)
+            
+            if snapshot.value as? NSDictionary != nil {
+                
+                for user in value! {
+                    let contents = user.value as? NSDictionary
+                    
+                    let uid = contents?.value(forKey: "requesterId") as? String
+                    
+                    if uid != Auth.auth().currentUser?.uid {
+                        let t = contents?.value(forKey: "title")
+                        //print(t)
+                        self.titles.append(t)
+                        
+                        let requestUID = contents?.value(forKey: "requestId")
+                        self.requestUIDS.append(requestUID!)
+                        
+                        //print(uid)
+                        self.uids.append(uid!)
+                        
+                        self.ref.child("USER_ID_DIRECTORY").child(uid as! String).observeSingleEvent(of: .value, with: { (sshot) in
+                            let v = sshot.value as? NSDictionary
+                            //print(v)
+                            
+                            let fName = v?.value(forKey: "firstName") as! String
+                            let lName = v?.value(forKey: "lastName") as! String
+                            let name = "\(fName) \(lName)"
+                            
+                            self.names.append(name)
+                            
+                            print("DONE")
+                            
+                            UIViewController.removeSpinner(spinner: sv)
+                            self.ticketView.reloadData()
+                        })
+                    }
+                    
+                }
+                //self.ticketView.reloadData()
+            }
+            
+        })
+    }
+    
+    
+    func wipe_feed() {
+        self.requestUIDS = []
+        self.titles = []
+        self.names = []
+        self.uids = []
+        self.images = []
+    }
 
     
 }
 
+extension UIViewController {
+    class func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
+    }
+    
+    class func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+}

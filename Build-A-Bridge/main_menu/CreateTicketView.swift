@@ -12,8 +12,9 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     
+    @IBOutlet weak var ticketDetailsMaxLen: UILabel!
     @IBOutlet weak var skillView: UITableView!
     @IBOutlet weak var ticketDate: UILabel!
     @IBOutlet weak var wordsUsed: UILabel!
@@ -37,6 +38,12 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.ticketDetailsMaxLen.text = "0/50"
+        
+        
+        // For character count
+        self.ticketDetails.delegate = self
         
         navigationController?.isToolbarHidden = false
         
@@ -92,17 +99,24 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
                 print("SKILL UID: \(uid as? String)")
                 
                 //set image to profilePic of requester
-                let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid as! String/* + ".jpeg"*/)")
-                volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        // Data for "images/island.jpg" is returned
-                        let profImage = UIImage(data: data!)
-                        self.images.append(profImage as! UIImage)
-                        //self.volunteerPicture.image = profImage
-                    }
-                }
+//                let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid /* + ".jpeg"*/)")
+//                volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+//                    if let error = error {
+//                        print(error.localizedDescription)
+//                    } else {
+//                        // Data for "images/island.jpg" is returned
+//                        let profImage = UIImage(data: data!)
+//                        self.images.append(profImage as! UIImage)
+//                        //self.volunteerPicture.image = profImage
+//                    }
+//                }
+                
+                print("PATH:")
+                print("Assets.xcassets/\(uid)")
+                let profImage = UIImage(named: uid)
+                print("appending image")
+                self.images.append(profImage ?? #imageLiteral(resourceName: "skills_general"))
+                self.skillView.reloadData()
                 
             }
             self.skillView.reloadData()
@@ -110,12 +124,31 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
         })
     }
     
+    func updateCharacterCount() {
+        let ticketDetails = self.ticketDetails.text.characters.count
+        
+        self.ticketDetailsMaxLen.text = "\((0) + ticketDetails)/50"
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.updateCharacterCount()
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        if(textView == ticketDetails){
+            return ticketDetails.text.characters.count +  (text.characters.count - range.length) <= 50
+        }
+        return false
+    }
+
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    
     @IBAction func submitRequest(_ sender: Any) {
+        print("submitting")
+        
         //var ref: DatabaseReference!
         
         //ref = Database.database().reference()
@@ -137,7 +170,7 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
             
             var uid = Auth.auth().currentUser?.uid
             
-            let subRequestByUser = self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").child(subRequest.key)
+            let subRequestByUser = self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").child(subRequest.key!)
             subRequestByUser.setValue([
                 "details": ticketDetails.text,
                 "requestId": subRequest.key,
@@ -150,10 +183,11 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
             
             //[[String:Any]]()
             
-            self.performSegue(withIdentifier: "back_to_feed", sender: self)
+            self.performSegue(withIdentifier: "request_submitted", sender: self)
         }
         
     }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count: \(self.skills.count)")
@@ -165,7 +199,7 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "skill_cell_ticket_create", for: indexPath) as! CreateTicketSkillSelectCell
     
         if indexPath.row <= self.images.count-1 {
-            cell.imageSkill.image = self.images[indexPath.row] as! UIImage
+            cell.imageSkill.image = self.images[indexPath.row] 
         }
         //cell.imageSkill.image = self.images[indexPath.row] as! UIImage
         

@@ -9,9 +9,13 @@ class InitialView: UIPageViewController, UIPageViewControllerDelegate, UIPageVie
         
         //
         
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        button.backgroundColor = UIColor.white
+        let button = UIButton(frame: CGRect(x: self.view.frame.size.width - 60, y: 700, width: 200, height: 50))
+        button.setTitle("Get Started!",for: .normal)
+        //button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(test), for: .touchUpInside)
+        
+        button.center.x = self.view.frame.midX
+        //button.center.y = self.view.frame.midY
         self.view.addSubview(button)
         //
         
@@ -58,7 +62,8 @@ class InitialView: UIPageViewController, UIPageViewControllerDelegate, UIPageVie
     
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "sOne"),
-                self.newVc(viewController: "sTwo")]
+                self.newVc(viewController: "sTwo"),
+                self.newVc(viewController: "sThree")]
     }()
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

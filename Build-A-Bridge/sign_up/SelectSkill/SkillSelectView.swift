@@ -68,7 +68,7 @@ class SkillSelectView: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
         // Swift 4.1 and below
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     @IBAction func `continue`(_ sender: Any) {

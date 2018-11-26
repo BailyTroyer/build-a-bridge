@@ -47,7 +47,7 @@ class SelectSkillsView: UIViewController, UITableViewDataSource, UITableViewDele
                 print("SKILL UID: \(uid as? String)")
                 
                 //set image to profilePic of requester
-                let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid as! String/* + ".jpeg"*/)")
+                let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid /* + ".jpeg"*/)")
                 volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
                     if let error = error {
                         print(error.localizedDescription)
@@ -105,7 +105,7 @@ class SelectSkillsView: UIViewController, UITableViewDataSource, UITableViewDele
         
         //cell.imageSkill.image = UIImage(named: "panda.jpg")
         if indexPath.row <= self.images.count-1 {
-            cell.imageSkill.image = self.images[indexPath.row] as! UIImage
+            cell.imageSkill.image = self.images[indexPath.row] 
         }
         //cell.imageSkill.image = self.images[indexPath.row] as! UIImage
         print("images list: \(self.images)")

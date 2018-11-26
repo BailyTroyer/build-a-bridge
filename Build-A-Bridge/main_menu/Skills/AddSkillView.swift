@@ -44,6 +44,9 @@ class AddSkillView: UITableViewController {
             //value -> kv pairs of k=uid v=true
             
             let value = snapshot.value as? NSDictionary
+            
+            print("skills: \(value)")
+            
             for skill in value! {
                 let skill_id = skill.key as? String
                 self.ref.child("SKILLS").child(skill_id!).observeSingleEvent(of: .value, with: { (ssnapshot) in
@@ -87,17 +90,25 @@ class AddSkillView: UITableViewController {
                     //print("SKILL UID: \(uid as? String)")
                     
                     //set image to profilePic of requester
-                    let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid)")
-                    volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            // Data for "images/island.jpg" is returned
-                            let profImage = UIImage(data: data!)
-                            self.images.append(profImage!)
-                            //self.volunteerPicture.image = profImage
-                        }
-                    }
+//                    let volPicRref = profPicStorage.reference().child("SKILL_ICONS/\(uid)")
+//                    volPicRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+//                        if let error = error {
+//                            print(error.localizedDescription)
+//                        } else {
+//                            // Data for "images/island.jpg" is returned
+//                            let profImage = UIImage(data: data!)
+//                            self.images.append(profImage!)
+//                            //self.volunteerPicture.image = profImage
+//                        }
+//                    }
+                    
+                    print("PATH:")
+                    print("Assets.xcassets/\(uid)")
+                    let profImage = UIImage(named: uid)
+                    print("appending image")
+                    self.images.append(profImage ?? #imageLiteral(resourceName: "skills_general"))
+                    self.tableView.reloadData()
+                    
                 }
                 
             }

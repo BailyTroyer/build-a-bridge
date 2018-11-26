@@ -35,7 +35,7 @@ class ProfilePictureView: UIViewController, UIImagePickerControllerDelegate, UIN
             let image = UIImagePickerController()
             image.delegate = self
             // can also select camera
-            image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            image.sourceType = UIImagePickerController.SourceType.photoLibrary
             //can change to true if needed
             image.allowsEditing = false
             self.present(image, animated: true, completion: nil)
@@ -47,8 +47,11 @@ class ProfilePictureView: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     //------------------------------image logic
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             profilePicture.image = image
             let userUid = Auth.auth().currentUser?.uid
             
@@ -57,12 +60,12 @@ class ProfilePictureView: UIViewController, UIImagePickerControllerDelegate, UIN
             
             
             // Create a reference to the file you want to upload
-            let uploadPic = storageRef.child("PROFILE_PICTURES").child(userUid! + ".jpeg")
-            
+//            let uploadPic = storageRef.child("PROFILE_PICTURES").child(userUid! + ".jpeg")
+            let uploadPic = storageRef.child("PROFILE_PICTURES").child(userUid!)
             var data = NSData()
-            data = UIImageJPEGRepresentation(image, 0.8)! as NSData
+            data = image.jpegData(compressionQuality: 0.8)! as NSData
             // set upload path
-            let filePath = "\(Auth.auth().currentUser!.uid)/\("userPhoto")"
+            //let filePath = "\(Auth.auth().currentUser!.uid)/\("userPhoto")"
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpeg"
             
@@ -83,4 +86,14 @@ class ProfilePictureView: UIViewController, UIImagePickerControllerDelegate, UIN
     
     //------------------------------image logic
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/bailytroyer/dev/Build_A_Bridge/github/build-a-bridge/Build-A-Bridge/main_menu/RequestSubmittedView.swift">
+   </FileRef>
+   <FileRef
       location = "group:Build-A-Bridge.xcodeproj">
    </FileRef>
    <FileRef

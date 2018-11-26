@@ -12,16 +12,17 @@ import Firebase
 
 class SplashScreen: UIViewController {
     
-    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var warningLabel: UILabel!
+    
+    var isKeyboardAppear = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hi")
         //Looks for single or multiple taps.
         setupKeyboardDismissRecognizer()
-        
         warningLabel.text = ""
         
     }
@@ -43,7 +44,7 @@ class SplashScreen: UIViewController {
         border.borderWidth = _width
         emailField.layer.addSublayer(border)
         emailField.layer.masksToBounds = true
-        
+
         let border_pass = CALayer()
         let width_pass = CGFloat(1)
         border_pass.borderColor = UIColor.white.cgColor
@@ -51,13 +52,7 @@ class SplashScreen: UIViewController {
         border_pass.borderWidth = width_pass
         passwordField.layer.addSublayer(border_pass)
         passwordField.layer.masksToBounds = true
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -65,31 +60,29 @@ class SplashScreen: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func signUp(_ sender: Any) {
-        self.performSegue(withIdentifier: "one", sender: self)
-    }
-    
-    @IBAction func signIn(_ sender: Any) {
+    @IBAction func logIn(_ sender: Any) {
         if emailField.text != "" && passwordField.text != "" {
-            
             Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
-                
                 if error != nil {
                     //error
                     self.warningLabel.text = error?.localizedDescription
                     print("error: \(String(describing: error))")
                 } else {
                     print("user: \(String(describing: user))")
-                    
                     self.performSegue(withIdentifier: "to_menu", sender: self)
                 }
-                
             }
-            
         } else {
             warningLabel.text = "enter an email and password"
         }
     }
     
+    @IBAction func cancel(_ sender: Any) {
+        self.performSegue(withIdentifier: "to_splash", sender: self)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.emailField.becomeFirstResponder()
+
+    }
 }
 
