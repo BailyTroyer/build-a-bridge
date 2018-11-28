@@ -45,11 +45,13 @@ class NotHelpedRequestView: UIViewController {
     @IBAction func cancel(_ sender: Any) {
         print("cancel")
         
-        let subRequest = self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").child(self.u_Uid).removeValue()
+        let subRequest = self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("REQUESTED").child(self.u_Uid).removeValue()
         
         print("request test: \(subRequest)")
         
         let subRequestByUser = self.ref.child("REQUESTS_BY_USER").child((Auth.auth().currentUser?.uid)!).child("REQUESTED").child(self.u_Uid).removeValue()
+        
+        _ = navigationController?.popViewController(animated: true)
         
     }
 }

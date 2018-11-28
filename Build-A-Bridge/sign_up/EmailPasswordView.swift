@@ -78,12 +78,12 @@ class EmailPasswordView: UIViewController {
                     
                     ref = Database.database().reference()
                     
-                    ref.child("USERS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child((Auth.auth().currentUser?.uid)!).setValue([
+                    ref.child("USERS").child("STATE").child("New York").child("REGION").child("Buffalo").child((Auth.auth().currentUser?.uid)!).setValue([
                         "email": Auth.auth().currentUser?.email,
                         "firstName": self.firstName,
                         "lastName": self.lastName,
-                        "region": "BUFFALO",
-                        "state": "NEW_YORK",
+                        "region": "Buffalo",
+                        "state": "New York",
                         "userid": Auth.auth().currentUser?.uid
                         ])
                     
@@ -94,8 +94,8 @@ class EmailPasswordView: UIViewController {
                         "firstName": self.firstName,
                         "lastName": self.lastName,
                         "phoneNumber": self.phoneNumber,
-                        "region": "BUFFALO",
-                        "state": "NEW_YORK",
+                        "region": "Buffalo",
+                        "state": "New York",
                         "userid": Auth.auth().currentUser?.uid
                         ])
                     

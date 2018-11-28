@@ -28,7 +28,7 @@ class NotHelpedView: UIViewController {
         let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
         print("UID SENT NOT HELPED VIEW: \(uid)")
         
-        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("REQUESTED").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let contents = snapshot.value as? NSDictionary
             
@@ -99,14 +99,14 @@ class NotHelpedView: UIViewController {
         
         print("UID TO LOOK FOR: \(self.uid)")
         
-        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").child(self.uid).observeSingleEvent(of: .value, with: { (sshot) in
+        self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("REQUESTED").child(self.uid).observeSingleEvent(of: .value, with: { (sshot) in
             
             print("pre-contents: \(String(describing: sshot.value as? NSMutableDictionary))")
             
             if let contents = sshot.value as? NSMutableDictionary {
                 print("cnts: \(contents)")
                 
-                let setStatus = self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("IN_PROGRESS").child(self.uid)
+                let setStatus = self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("IN_PROGRESS").child(self.uid)
                 print("change db: \(setStatus)")
                 
                 setStatus.setValue(contents)
@@ -114,7 +114,7 @@ class NotHelpedView: UIViewController {
                 setStatus.child("volunteerId").setValue(Auth.auth().currentUser?.uid)
 
                 
-                self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").child(self.uid).removeValue()
+                self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("REQUESTED").child(self.uid).removeValue()
             }
             
         })
@@ -141,6 +141,7 @@ class NotHelpedView: UIViewController {
             }
         })
         
+        _ = navigationController?.popViewController(animated: true)
         
 //        self.performSegue(withIdentifier: "back_to_main", sender: self)
     }

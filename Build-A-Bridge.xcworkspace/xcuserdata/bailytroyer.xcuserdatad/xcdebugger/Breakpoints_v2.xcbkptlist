@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/CreateTicketView.swift"
-            timestampString = "564943539.4523849"
+            timestampString = "565140540.0662481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16"
@@ -105,24 +105,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Build-A-Bridge/main_menu/Skills/SkillView.swift"
-            timestampString = "563990146.010331"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/Requests/NotHelpedRequestView.swift"
-            timestampString = "564100137.330152"
+            timestampString = "565140540.144184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9"
@@ -137,28 +121,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Build-A-Bridge/main_menu/Skills/SkillView.swift"
-            timestampString = "563990146.010582"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/Requests/RequestsView.swift"
-            timestampString = "564417804.886044"
+            timestampString = "565140540.145913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/Requests/RequestsView.swift"
-            timestampString = "564417804.8861541"
+            timestampString = "565140540.15086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "RequestsView"
             landmarkType = "3">
          </BreakpointContent>
@@ -186,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/sign_up/EmailPasswordView.swift"
-            timestampString = "564100137.330471"
+            timestampString = "565140540.153121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -218,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/Requests/NotHelpedRequestView.swift"
-            timestampString = "564100137.330555"
+            timestampString = "565140540.157635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
@@ -296,7 +264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/Requests/NotHelpedRequestView.swift"
-            timestampString = "564100137.330595"
+            timestampString = "565140540.159472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -312,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/NotHelpedView.swift"
-            timestampString = "564100137.330676"
+            timestampString = "565140540.161216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -344,7 +312,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/NotHelpedView.swift"
-            timestampString = "564100137.330748"
+            timestampString = "565140540.16294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "5"
@@ -392,11 +360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/settings/SettingsView.swift"
-            timestampString = "564417053.89236"
+            timestampString = "564980609.432866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -408,7 +376,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/HomeView.swift"
-            timestampString = "564417804.886326"
+            timestampString = "565140540.16589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -424,7 +392,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/HomeView.swift"
-            timestampString = "564417804.8866971"
+            timestampString = "565140540.176398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -440,7 +408,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Build-A-Bridge/main_menu/HomeView.swift"
-            timestampString = "564417804.886941"
+            timestampString = "565140540.177958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
@@ -510,6 +478,147 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Build-A-Bridge/main_menu/NotHelpedView.swift"
+            timestampString = "565140540.181179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "help(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Build-A-Bridge/main_menu/Requests/NotHelpedRequestView.swift"
+            timestampString = "565140540.191362"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "cancel(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Build-A-Bridge/main_menu/messages/Contact/ListContactView.swift"
+            timestampString = "565140540.2001669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "ListContactView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Build_A_Bridge.ListContactView.message_uids.getter : Swift.Array&lt;Any&gt;"
+                  moduleName = "Build-A-Bridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bailytroyer/dev/Build_A_Bridge/github/build-a-bridge/Build-A-Bridge/main_menu/messages/Contact/ListContactView.swift"
+                  timestampString = "564965276.444028"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Build_A_Bridge.ListContactView.message_uids.setter : Swift.Array&lt;Any&gt;"
+                  moduleName = "Build-A-Bridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bailytroyer/dev/Build_A_Bridge/github/build-a-bridge/Build-A-Bridge/main_menu/messages/Contact/ListContactView.swift"
+                  timestampString = "564965276.446793"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Build_A_Bridge.ListContactView.init(style: __C.UITableViewStyle) -&gt; Build_A_Bridge.ListContactView"
+                  moduleName = "Build-A-Bridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bailytroyer/dev/Build_A_Bridge/github/build-a-bridge/Build-A-Bridge/main_menu/messages/Contact/ListContactView.swift"
+                  timestampString = "564965276.450605"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "390">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Build_A_Bridge.ListContactView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Build_A_Bridge.ListContactView"
+                  moduleName = "Build-A-Bridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bailytroyer/dev/Build_A_Bridge/github/build-a-bridge/Build-A-Bridge/main_menu/messages/Contact/ListContactView.swift"
+                  timestampString = "564965276.453293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "361">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Build_A_Bridge.ListContactView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Build_A_Bridge.ListContactView&gt;"
+                  moduleName = "Build-A-Bridge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bailytroyer/dev/Build_A_Bridge/github/build-a-bridge/Build-A-Bridge/main_menu/messages/Contact/ListContactView.swift"
+                  timestampString = "564965276.455712"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "336">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Build-A-Bridge/main_menu/Requests/AdvanceTicketView.swift"
+            timestampString = "565140540.200949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "message(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

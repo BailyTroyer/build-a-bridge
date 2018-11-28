@@ -124,6 +124,17 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
         })
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let index = self.skillView.indexPathForSelectedRow {
+            let sv = UIViewController.displaySpinner(onView: self.view)
+            self.ticketTitle.text = ""
+            self.ticketDetails.text = ""
+            self.skillView.deselectRow(at: index, animated: true)
+            UIViewController.removeSpinner(spinner: sv)
+        }
+    }
+    
     func updateCharacterCount() {
         let ticketDetails = self.ticketDetails.text.characters.count
         
@@ -154,7 +165,7 @@ class CreateTicketView: UIViewController, UITableViewDataSource, UITableViewDele
         //ref = Database.database().reference()
         
         if ticketTitle.text != "" && self.ticketDetails.text != "" && self.selectedSkill != nil {
-            let subRequest = self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").childByAutoId()
+            let subRequest = self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("REQUESTED").childByAutoId()
             
             print("request: \(subRequest)")
             

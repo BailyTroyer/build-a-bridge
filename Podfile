@@ -18,4 +18,8 @@ target 'Build-A-Bridge' do
   pod 'UIEmptyState'
   pod 'lottie-ios'
   pod 'Firebase/Firestore'
+  pod "ChatSDK"
+  pod "ChatSDKFirebase/Adapter"
+  pod "ChatSDKFirebase/FileStorage"
+  pod "ChatSDKFirebase/Push"
 end

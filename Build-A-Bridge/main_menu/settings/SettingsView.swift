@@ -35,17 +35,19 @@ class SettingsView: UIViewController {
         
         let picRref = profPicStorage.reference().child("PROFILE_PICTURES/\((Auth.auth().currentUser?.uid)! + ".jpeg")")
         
-        
+        let sv = UIViewController.displaySpinner(onView: self.view)
         picRref.getData(maxSize: 15 * 1024 * 1024) { data, error in
             if let error = error {
 //                print(error.localizedDescription)
                 print(error)
                 print("aint no photo")
                 self.imageView.image = #imageLiteral(resourceName: "default_profile")
+                UIViewController.removeSpinner(spinner: sv)
             } else {
                 // Data for "images/island.jpg" is returned
                 let profImage = UIImage(data: data!)
                 self.imageView.image = profImage
+                UIViewController.removeSpinner(spinner: sv)
             }
         }
         

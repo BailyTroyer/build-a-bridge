@@ -228,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxp-Ii-PLE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4264.8000000000002" y="1080.8095952023989"/>
+            <point key="canvasLocation" x="-4378" y="1081"/>
         </scene>
         <!--Create-->
         <scene sceneID="ipo-jy-kqF">
@@ -390,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcU-5z-axe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5204" y="1762.6686656671666"/>
+            <point key="canvasLocation" x="-5204" y="1827"/>
         </scene>
         <!--Request Submitted View-->
         <scene sceneID="zC3-Ss-T3v">
@@ -441,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cub-Pf-Man" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4498" y="1763"/>
+            <point key="canvasLocation" x="-4447" y="1827"/>
         </scene>
         <!--Requests View-->
         <scene sceneID="Lw3-Z3-Hay">
@@ -1154,21 +1154,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="agreement" translatesAutoresizingMaskIntoConstraints="NO" id="elf-nH-Dth">
+                                <rect key="frame" x="155" y="61" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="Fiy-QH-g4V"/>
+                                    <constraint firstAttribute="height" constant="64" id="pr9-LI-vKc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Nav-S1-I8f" firstAttribute="leading" secondItem="s6x-tX-2A9" secondAttribute="leading" constant="16" id="42U-dI-VnG"/>
                             <constraint firstItem="yhM-jg-Pg7" firstAttribute="centerX" secondItem="s6x-tX-2A9" secondAttribute="centerX" id="5rD-lN-4Df"/>
+                            <constraint firstItem="Atn-mr-Bgh" firstAttribute="leading" secondItem="elf-nH-Dth" secondAttribute="trailing" constant="40" id="7qw-U3-QYW"/>
                             <constraint firstItem="Nzu-il-Im6" firstAttribute="top" secondItem="Nav-S1-I8f" secondAttribute="bottom" constant="20" id="A4j-wq-DQb"/>
                             <constraint firstItem="DJM-13-1H2" firstAttribute="leading" secondItem="s6x-tX-2A9" secondAttribute="leading" constant="16" id="Ana-WO-WM6"/>
                             <constraint firstItem="s6x-tX-2A9" firstAttribute="trailing" secondItem="Atn-mr-Bgh" secondAttribute="trailing" constant="16" id="Bas-Fb-qPM"/>
                             <constraint firstItem="s6x-tX-2A9" firstAttribute="trailing" secondItem="2J7-xf-hwS" secondAttribute="trailing" constant="16" id="C52-zu-RpL"/>
+                            <constraint firstItem="elf-nH-Dth" firstAttribute="top" secondItem="s6x-tX-2A9" secondAttribute="top" constant="41" id="Gcq-Rz-2AP"/>
                             <constraint firstItem="Nzu-il-Im6" firstAttribute="leading" secondItem="zVX-Nr-glt" secondAttribute="trailing" constant="8" id="I9i-jd-Xnn"/>
                             <constraint firstItem="shQ-p9-9hv" firstAttribute="leading" secondItem="s6x-tX-2A9" secondAttribute="leading" constant="16" id="VX3-SM-BGb"/>
                             <constraint firstItem="s6x-tX-2A9" firstAttribute="trailing" secondItem="vfY-yc-udr" secondAttribute="trailing" constant="16" id="WIZ-aB-DNc"/>
                             <constraint firstItem="zVX-Nr-glt" firstAttribute="leading" secondItem="s6x-tX-2A9" secondAttribute="leading" constant="16" id="Zgi-v8-4p1"/>
                             <constraint firstItem="s6x-tX-2A9" firstAttribute="bottom" secondItem="vfY-yc-udr" secondAttribute="bottom" constant="17" id="dCu-e8-wjl"/>
                             <constraint firstItem="s6x-tX-2A9" firstAttribute="bottom" secondItem="DJM-13-1H2" secondAttribute="bottom" constant="17" id="enx-Xu-AgW"/>
+                            <constraint firstItem="elf-nH-Dth" firstAttribute="leading" secondItem="shQ-p9-9hv" secondAttribute="trailing" constant="39" id="fO7-mD-vhq"/>
                             <constraint firstItem="2J7-xf-hwS" firstAttribute="top" secondItem="Atn-mr-Bgh" secondAttribute="bottom" constant="8" id="isd-7w-xcm"/>
                             <constraint firstItem="Nav-S1-I8f" firstAttribute="top" secondItem="shQ-p9-9hv" secondAttribute="bottom" constant="8" id="lEj-a3-gAU"/>
                             <constraint firstItem="yhM-jg-Pg7" firstAttribute="top" secondItem="zVX-Nr-glt" secondAttribute="bottom" constant="22" id="lan-Ml-dyQ"/>
@@ -1290,7 +1300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDb-f2-cBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3740" y="3648"/>
+            <point key="canvasLocation" x="-3681" y="3779"/>
         </scene>
         <!--Not Helped Request View-->
         <scene sceneID="oV2-dT-ohV">
@@ -1469,6 +1479,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.8423560685" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" rowHeight="89" id="2hV-fH-1BF" customClass="ContactCell" customModule="Build_A_Bridge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="89"/>
@@ -1477,7 +1488,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="88.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait_3" translatesAutoresizingMaskIntoConstraints="NO" id="sst-Dy-Iya">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="sst-Dy-Iya">
                                             <rect key="frame" x="16" y="9" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="mRk-aL-lqo"/>
@@ -1827,13 +1838,16 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TxX-tr-Pr9">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="HTf-CI-e9j" kind="relationship" relationship="rootViewController" id="D65-zW-8dK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOd-cn-OTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5204" y="1080.8095952023989"/>
+            <point key="canvasLocation" x="-5204" y="1081"/>
         </scene>
         <!--Profile-->
         <scene sceneID="XSU-j1-PjY">
@@ -1880,9 +1894,10 @@
         <image name="Message" width="48" height="48"/>
         <image name="Plus" width="48" height="48"/>
         <image name="Requests" width="48" height="48"/>
+        <image name="agreement" width="51.200000762939453" height="51.200000762939453"/>
         <image name="baseline_star_rate_black_48pt" width="96" height="96"/>
+        <image name="default_profile" width="72" height="72"/>
         <image name="icon.png" width="128" height="128"/>
-        <image name="portrait_3" width="3576" height="5364"/>
         <image name="right" width="36" height="36"/>
         <image name="skills_general" width="48" height="48"/>
     </resources>

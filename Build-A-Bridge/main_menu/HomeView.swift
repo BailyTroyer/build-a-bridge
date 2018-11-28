@@ -165,22 +165,23 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     func load_data() {
        
         let sv = UIViewController.displaySpinner(onView: self.view)
+
         self.wipe_feed()
-        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("REQUESTED").observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
-            //print(value)
             
             if snapshot.value as? NSDictionary != nil {
                 
                 for user in value! {
+                    print("user: \(user)")
                     let contents = user.value as? NSDictionary
                     
                     let uid = contents?.value(forKey: "requesterId") as? String
                     
                     if uid != Auth.auth().currentUser?.uid {
                         let t = contents?.value(forKey: "title")
-                        //print(t)
+                        print("title: \(t)")
                         self.titles.append(t)
                         
                         let requestUID = contents?.value(forKey: "requestId")
@@ -199,17 +200,21 @@ class HomeView: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                             
                             self.names.append(name)
                             
+                            print("names: \(self.names)")
                             print("DONE")
-                            
+                            print("refreshing")
                             UIViewController.removeSpinner(spinner: sv)
                             self.ticketView.reloadData()
                         })
                     }
-                    
                 }
                 //self.ticketView.reloadData()
+            } else {
+                print("DONE")
+                print("refreshing")
+                UIViewController.removeSpinner(spinner: sv)
+                self.ticketView.reloadData()
             }
-            
         })
     }
     

@@ -31,32 +31,22 @@ class AdvanceTicketView: UIViewController {
     }
     
     @IBAction func message(_ sender: Any) {
-        //Create the message part in DATABSE AND GO TO TABLE VIEW
-        //MAKE TABLE VIEW LOAD MESSAGES
-        //IF USER already set up messages, this should route to message view in messages vc
         
-        //STEPS:
-        
-        //check if exists, otherwise create:
-        //MESSAGES_BY_USER -> CURRENT_USER -> k:OTHER_USER, v:message_uid
-        //MESSAGES_BY_USER -> OTHER_USER -> k:CURRENT_USER, v:message_uid
-        
-        //print("THIS IS MESSAGES FOR USER: \(self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID))")
-        
-        let m_uid = self.ref.childByAutoId().key
+        let m_uid = self.ref.childByAutoId().key as! String
         print("muid: \(m_uid)")
+        
+        print("VOLUNTEER ID: \(self.volunteerUID)")
+        print("REQUESTER ID: \(self.requesterUID)")
         
         self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID).observeSingleEvent(of: .value, with: { (sshot) in
 
-            //print("pre-contents: \(String(describing: sshot.value as? NSMutableDictionary))")
-
             if sshot.value as? NSMutableDictionary == nil {
-
+                
                 let calendar = Calendar.current
                 let time=calendar.dateComponents([.hour,.minute,.second,.month,.year,.day], from: Date())
-
-                self.ref.child("MESSAGES").child(m_uid!).setValue([
-                    "msgId": "\(m_uid)",
+                
+                self.ref.child("MESSAGES").child(m_uid).setValue([
+                    "msgId": m_uid,
                     "uid1": "\(self.volunteerUID)",
                     "uid2": "\(self.requesterUID)",
                     "lastUpdated": [
@@ -67,14 +57,18 @@ class AdvanceTicketView: UIViewController {
                         "second": time.second,
                         "year": time.year
                     ]
-                ])
+                    ])
+
 
                 self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID).setValue([
                     "\(self.requesterUID)": "\(m_uid)"
                 ])
             } else {
                 // forward to vc with messages w/ user
-                print("forward to message UI")
+                print("creating new one")
+                self.ref.child("MESSAGES_BY_USER").child(self.volunteerUID).setValue([
+                    "\(self.requesterUID)": "\(m_uid)"
+                ])
             }
         })
 
@@ -88,7 +82,15 @@ class AdvanceTicketView: UIViewController {
                     "\(self.volunteerUID)": "\(m_uid)"
                 ])
             } else {
-                print("forward to message UI")
+                for elem in ((sshot.value as? NSMutableDictionary)!) {
+                    if (elem.value as! String) != self.requesterUID {
+                        print("DOING IT THEN")
+                        self.ref.child("MESSAGES_BY_USER").child(self.requesterUID).setValue([
+                            "\(self.volunteerUID)": "\(m_uid)"
+                        ])
+                    }
+                    print("var: \(elem)")
+                }
             }
         })
     }
@@ -104,7 +106,8 @@ class AdvanceTicketView: UIViewController {
     
     @IBAction func cancel(_ sender: Any) {
         complete()
-        self.performSegue(withIdentifier: "to_done", sender: self)
+        _ = navigationController?.popViewController(animated: true)
+        //self.performSegue(withIdentifier: "to_done", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -137,14 +140,14 @@ class AdvanceTicketView: UIViewController {
         
         print("UID TO LOOK FOR: \(self.uid)")
         
-        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("IN_PROGRESS").child(self.uid).observeSingleEvent(of: .value, with: { (sshot) in
+        self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("IN_PROGRESS").child(self.uid).observeSingleEvent(of: .value, with: { (sshot) in
 
             print("pre-contents: \(sshot.value as? NSMutableDictionary)")
 
             if let contents = sshot.value as? NSMutableDictionary {
                 print("cnts: \(contents)")
 
-                let setStatus = self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("COMPLETED").child(self.uid)
+                let setStatus = self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("COMPLETED").child(self.uid)
                 print("change db: \(setStatus)")
 
                 setStatus.setValue(contents)
@@ -152,7 +155,7 @@ class AdvanceTicketView: UIViewController {
                 setStatus.child("volunteerId").setValue(Auth.auth().currentUser?.uid)
 
 
-                self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("IN_PROGRESS").child(self.uid).removeValue()
+                self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("IN_PROGRESS").child(self.uid).removeValue()
             }
 
         })
@@ -166,12 +169,14 @@ class AdvanceTicketView: UIViewController {
     
     func load_data() {
         
+        print("---starting spinner---")
+        
         let sv = UIViewController.displaySpinner(onView: self.view)
         
         let profPicStorage = Storage.storage(url:"gs://build-a-bridge-207816.appspot.com")
         print("UID SENT: \(uid)")
         
-        self.ref.child("REQUESTS").child("STATE").child("NEW_YORK").child("REGION").child("BUFFALO").child("IN_PROGRESS").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("REQUESTS").child("STATE").child("New York").child("REGION").child("Buffalo").child("IN_PROGRESS").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let contents = snapshot.value as? NSDictionary
             
@@ -256,9 +261,14 @@ class AdvanceTicketView: UIViewController {
             self.title = t as! String
             //self.navigationItem.title = @"The title";
             //print(v)
+            
+            print("---stopping spinner---")
+            UIViewController.removeSpinner(spinner: sv)
+            print("skill_id: \(skill_id)")
         })
         
-        UIViewController.removeSpinner(spinner: sv)
-        print("skill_id: \(skill_id)")
+//        print("---stopping spinner---")
+//        UIViewController.removeSpinner(spinner: sv)
+//        print("skill_id: \(skill_id)")
     }
 }

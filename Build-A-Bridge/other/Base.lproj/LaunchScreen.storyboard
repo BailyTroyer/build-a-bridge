@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Fi-Q9-Y8K">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,6 +15,34 @@
         </array>
     </customFonts>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="zf1-pZ-iTn">
+            <objects>
+                <viewController id="3Fi-Q9-Y8K" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="guw-eC-J8u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="NjW-oL-6ZT">
+                                <rect key="frame" x="109" y="139" width="156" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="156" id="sat-Tp-GHe"/>
+                                    <constraint firstAttribute="height" constant="76" id="tfl-lS-E0Y"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.8423560685" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NjW-oL-6ZT" firstAttribute="top" secondItem="nyv-bZ-jqH" secondAttribute="top" constant="119" id="OMl-cT-UsJ"/>
+                            <constraint firstItem="NjW-oL-6ZT" firstAttribute="leading" secondItem="nyv-bZ-jqH" secondAttribute="leading" constant="109" id="gAW-fF-tJ4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nyv-bZ-jqH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3y-67-kbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-863.20000000000005" y="374.66266866566718"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
@@ -58,5 +86,6 @@
     </scenes>
     <resources>
         <image name="heart_icon" width="120" height="108"/>
+        <image name="logo.png" width="722" height="336"/>
     </resources>
 </document>

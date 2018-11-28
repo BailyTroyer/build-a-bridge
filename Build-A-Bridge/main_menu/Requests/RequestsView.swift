@@ -39,6 +39,7 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
         print("requests view did appear")
         print("preselected: \(self.segmentControl.selectedSegmentIndex)")
         //self.load_out()
+        self.segmentControl.selectedSegmentIndex = 0
         self.load_out()
     }
     
@@ -219,6 +220,8 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             let value = snapshot.value as? NSDictionary
             
+            print("in progress volunteer: \(value)")
+            
             if value != nil {
                 for r in value! {
                     //print(r)
@@ -262,6 +265,8 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
                 let value = snapshot.value as? NSDictionary
                 
+                print("in progress volunteer: \(value)")
+                
                 if value != nil {
                     for r in value! {
                         //print(r)
@@ -294,6 +299,12 @@ class RequestsView: UIViewController, UITableViewDelegate, UITableViewDataSource
                         })
                         
                     }
+                } else {
+                    UIViewController.removeSpinner(spinner: sv)
+                    print("reloading data")
+                    print("=ending load=")
+                    print("after load: \(self.requests)")
+                    self.requestsView.reloadData()
                 }
                 
                 //self.requestsView.reloadData()
